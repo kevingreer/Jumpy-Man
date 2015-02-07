@@ -1,0 +1,530 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4411EFED1A5DABAF002BD399 /* Barrel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411EFEC1A5DABAF002BD399 /* Barrel.swift */; };
+		4411EFEF1A5EE4AD002BD399 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411EFEE1A5EE4AD002BD399 /* MenuScene.swift */; };
+		4411EFF11A5EE854002BD399 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4411EFF01A5EE854002BD399 /* MenuScene.sks */; };
+		44B795FD1A634BB9001653C9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B795FC1A634BB9001653C9 /* Extensions.swift */; };
+		44B795FF1A68277B001653C9 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B795FE1A68277B001653C9 /* Character.swift */; };
+		44B796011A682801001653C9 /* Man.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B796001A682801001653C9 /* Man.swift */; };
+		44C3DA071A7D7CCE00523C4E /* 04B_19.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 44C3DA061A7D7A2000523C4E /* 04B_19.TTF */; };
+		44F0E7381A48C02500F0816F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F0E7371A48C02500F0816F /* AppDelegate.swift */; };
+		44F0E73A1A48C02500F0816F /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 44F0E7391A48C02500F0816F /* GameScene.sks */; };
+		44F0E73C1A48C02500F0816F /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F0E73B1A48C02500F0816F /* GameScene.swift */; };
+		44F0E73E1A48C02500F0816F /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F0E73D1A48C02500F0816F /* GameViewController.swift */; };
+		44F0E7411A48C02500F0816F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44F0E73F1A48C02500F0816F /* Main.storyboard */; };
+		44F0E7431A48C02600F0816F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44F0E7421A48C02600F0816F /* Images.xcassets */; };
+		44F0E7461A48C02600F0816F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44F0E7441A48C02600F0816F /* LaunchScreen.xib */; };
+		44F0E7521A48C02600F0816F /* JumpingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F0E7511A48C02600F0816F /* JumpingTests.swift */; };
+		44F0E75C1A49DC0100F0816F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F0E75B1A49DC0100F0816F /* Colors.swift */; };
+		44F2F2C91A75530F00EF6699 /* JumpSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 44F2F2C61A75530F00EF6699 /* JumpSound.wav */; };
+		44F2F2CA1A75530F00EF6699 /* Running.wav in Resources */ = {isa = PBXBuildFile; fileRef = 44F2F2C71A75530F00EF6699 /* Running.wav */; };
+		44F2F2CB1A75530F00EF6699 /* RunningGrass.wav in Resources */ = {isa = PBXBuildFile; fileRef = 44F2F2C81A75530F00EF6699 /* RunningGrass.wav */; };
+		44F2F2CE1A75545D00EF6699 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F2F2CD1A75545D00EF6699 /* AVFoundation.framework */; };
+		44F2F2D01A755F4C00EF6699 /* Jumper.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44F2F2CF1A755F4C00EF6699 /* Jumper.mp3 */; };
+		44F2F2D21A75649900EF6699 /* CartoonPunch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 44F2F2D11A75649900EF6699 /* CartoonPunch.wav */; };
+		44F2F2D41A75A1F100EF6699 /* SettingsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F2F2D31A75A1F100EF6699 /* SettingsScene.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		44F0E74C1A48C02600F0816F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44F0E72A1A48C02500F0816F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 44F0E7311A48C02500F0816F;
+			remoteInfo = Jumping;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4411EFEC1A5DABAF002BD399 /* Barrel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Barrel.swift; sourceTree = "<group>"; };
+		4411EFEE1A5EE4AD002BD399 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
+		4411EFF01A5EE854002BD399 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
+		44B795FC1A634BB9001653C9 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		44B795FE1A68277B001653C9 /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		44B796001A682801001653C9 /* Man.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Man.swift; sourceTree = "<group>"; };
+		44C3DA061A7D7A2000523C4E /* 04B_19.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = 04B_19.TTF; sourceTree = "<group>"; };
+		44F0E7321A48C02500F0816F /* Jumping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jumping.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		44F0E7361A48C02500F0816F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44F0E7371A48C02500F0816F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		44F0E7391A48C02500F0816F /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		44F0E73B1A48C02500F0816F /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		44F0E73D1A48C02500F0816F /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		44F0E7401A48C02500F0816F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		44F0E7421A48C02600F0816F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		44F0E7451A48C02600F0816F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		44F0E74B1A48C02600F0816F /* JumpingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JumpingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		44F0E7501A48C02600F0816F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44F0E7511A48C02600F0816F /* JumpingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpingTests.swift; sourceTree = "<group>"; };
+		44F0E75B1A49DC0100F0816F /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		44F2F2C61A75530F00EF6699 /* JumpSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = JumpSound.wav; sourceTree = "<group>"; };
+		44F2F2C71A75530F00EF6699 /* Running.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Running.wav; sourceTree = "<group>"; };
+		44F2F2C81A75530F00EF6699 /* RunningGrass.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RunningGrass.wav; sourceTree = "<group>"; };
+		44F2F2CD1A75545D00EF6699 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		44F2F2CF1A755F4C00EF6699 /* Jumper.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Jumper.mp3; sourceTree = "<group>"; };
+		44F2F2D11A75649900EF6699 /* CartoonPunch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = CartoonPunch.wav; sourceTree = "<group>"; };
+		44F2F2D31A75A1F100EF6699 /* SettingsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScene.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		44F0E72F1A48C02500F0816F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44F2F2CE1A75545D00EF6699 /* AVFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		44F0E7481A48C02600F0816F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4411EFF21A5EE8F4002BD399 /* GameScene */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = GameScene;
+			sourceTree = "<group>";
+		};
+		4411EFF31A5EE909002BD399 /* MenuScene */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = MenuScene;
+			sourceTree = "<group>";
+		};
+		4411EFF41A5EE920002BD399 /* Screens, UI, Images */ = {
+			isa = PBXGroup;
+			children = (
+				44F0E7351A48C02500F0816F /* Supporting Files */,
+				44F0E73F1A48C02500F0816F /* Main.storyboard */,
+				44F0E7421A48C02600F0816F /* Images.xcassets */,
+				44F0E7441A48C02600F0816F /* LaunchScreen.xib */,
+			);
+			name = "Screens, UI, Images";
+			sourceTree = "<group>";
+		};
+		44B796031A6838A4001653C9 /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Characters;
+			sourceTree = "<group>";
+		};
+		44F0E7291A48C02500F0816F = {
+			isa = PBXGroup;
+			children = (
+				44F2F2CD1A75545D00EF6699 /* AVFoundation.framework */,
+				44F0E7341A48C02500F0816F /* Jumping */,
+				44F0E74E1A48C02600F0816F /* JumpingTests */,
+				44F0E7331A48C02500F0816F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		44F0E7331A48C02500F0816F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				44F0E7321A48C02500F0816F /* Jumping.app */,
+				44F0E74B1A48C02600F0816F /* JumpingTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		44F0E7341A48C02500F0816F /* Jumping */ = {
+			isa = PBXGroup;
+			children = (
+				44F2F2D31A75A1F100EF6699 /* SettingsScene.swift */,
+				4411EFF31A5EE909002BD399 /* MenuScene */,
+				4411EFF01A5EE854002BD399 /* MenuScene.sks */,
+				4411EFEE1A5EE4AD002BD399 /* MenuScene.swift */,
+				44B796031A6838A4001653C9 /* Characters */,
+				44B796001A682801001653C9 /* Man.swift */,
+				44B795FE1A68277B001653C9 /* Character.swift */,
+				4411EFEC1A5DABAF002BD399 /* Barrel.swift */,
+				4411EFF21A5EE8F4002BD399 /* GameScene */,
+				44F0E7391A48C02500F0816F /* GameScene.sks */,
+				44F0E73B1A48C02500F0816F /* GameScene.swift */,
+				44F0E7371A48C02500F0816F /* AppDelegate.swift */,
+				44F0E73D1A48C02500F0816F /* GameViewController.swift */,
+				44B795FC1A634BB9001653C9 /* Extensions.swift */,
+				44F0E75B1A49DC0100F0816F /* Colors.swift */,
+				4411EFF41A5EE920002BD399 /* Screens, UI, Images */,
+			);
+			path = Jumping;
+			sourceTree = "<group>";
+		};
+		44F0E7351A48C02500F0816F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				44C3DA061A7D7A2000523C4E /* 04B_19.TTF */,
+				44F2F2CC1A75531400EF6699 /* Sounds */,
+				44F0E7361A48C02500F0816F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		44F0E74E1A48C02600F0816F /* JumpingTests */ = {
+			isa = PBXGroup;
+			children = (
+				44F0E7511A48C02600F0816F /* JumpingTests.swift */,
+				44F0E74F1A48C02600F0816F /* Supporting Files */,
+			);
+			path = JumpingTests;
+			sourceTree = "<group>";
+		};
+		44F0E74F1A48C02600F0816F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				44F0E7501A48C02600F0816F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		44F2F2CC1A75531400EF6699 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				44F2F2D11A75649900EF6699 /* CartoonPunch.wav */,
+				44F2F2C61A75530F00EF6699 /* JumpSound.wav */,
+				44F2F2CF1A755F4C00EF6699 /* Jumper.mp3 */,
+				44F2F2C81A75530F00EF6699 /* RunningGrass.wav */,
+				44F2F2C71A75530F00EF6699 /* Running.wav */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		44F0E7311A48C02500F0816F /* Jumping */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 44F0E7551A48C02600F0816F /* Build configuration list for PBXNativeTarget "Jumping" */;
+			buildPhases = (
+				44F0E72E1A48C02500F0816F /* Sources */,
+				44F0E72F1A48C02500F0816F /* Frameworks */,
+				44F0E7301A48C02500F0816F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Jumping;
+			productName = Jumping;
+			productReference = 44F0E7321A48C02500F0816F /* Jumping.app */;
+			productType = "com.apple.product-type.application";
+		};
+		44F0E74A1A48C02600F0816F /* JumpingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 44F0E7581A48C02600F0816F /* Build configuration list for PBXNativeTarget "JumpingTests" */;
+			buildPhases = (
+				44F0E7471A48C02600F0816F /* Sources */,
+				44F0E7481A48C02600F0816F /* Frameworks */,
+				44F0E7491A48C02600F0816F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				44F0E74D1A48C02600F0816F /* PBXTargetDependency */,
+			);
+			name = JumpingTests;
+			productName = JumpingTests;
+			productReference = 44F0E74B1A48C02600F0816F /* JumpingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		44F0E72A1A48C02500F0816F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Kevin Greer";
+				TargetAttributes = {
+					44F0E7311A48C02500F0816F = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					44F0E74A1A48C02600F0816F = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 44F0E7311A48C02500F0816F;
+					};
+				};
+			};
+			buildConfigurationList = 44F0E72D1A48C02500F0816F /* Build configuration list for PBXProject "Jumpy Man" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 44F0E7291A48C02500F0816F;
+			productRefGroup = 44F0E7331A48C02500F0816F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				44F0E7311A48C02500F0816F /* Jumping */,
+				44F0E74A1A48C02600F0816F /* JumpingTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		44F0E7301A48C02500F0816F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44C3DA071A7D7CCE00523C4E /* 04B_19.TTF in Resources */,
+				44F0E7461A48C02600F0816F /* LaunchScreen.xib in Resources */,
+				44F0E7431A48C02600F0816F /* Images.xcassets in Resources */,
+				44F0E73A1A48C02500F0816F /* GameScene.sks in Resources */,
+				44F2F2D01A755F4C00EF6699 /* Jumper.mp3 in Resources */,
+				44F2F2CA1A75530F00EF6699 /* Running.wav in Resources */,
+				44F2F2C91A75530F00EF6699 /* JumpSound.wav in Resources */,
+				4411EFF11A5EE854002BD399 /* MenuScene.sks in Resources */,
+				44F2F2CB1A75530F00EF6699 /* RunningGrass.wav in Resources */,
+				44F2F2D21A75649900EF6699 /* CartoonPunch.wav in Resources */,
+				44F0E7411A48C02500F0816F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		44F0E7491A48C02600F0816F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		44F0E72E1A48C02500F0816F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44F0E73C1A48C02500F0816F /* GameScene.swift in Sources */,
+				44F0E75C1A49DC0100F0816F /* Colors.swift in Sources */,
+				4411EFED1A5DABAF002BD399 /* Barrel.swift in Sources */,
+				44F2F2D41A75A1F100EF6699 /* SettingsScene.swift in Sources */,
+				4411EFEF1A5EE4AD002BD399 /* MenuScene.swift in Sources */,
+				44F0E73E1A48C02500F0816F /* GameViewController.swift in Sources */,
+				44F0E7381A48C02500F0816F /* AppDelegate.swift in Sources */,
+				44B795FD1A634BB9001653C9 /* Extensions.swift in Sources */,
+				44B796011A682801001653C9 /* Man.swift in Sources */,
+				44B795FF1A68277B001653C9 /* Character.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		44F0E7471A48C02600F0816F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44F0E7521A48C02600F0816F /* JumpingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		44F0E74D1A48C02600F0816F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 44F0E7311A48C02500F0816F /* Jumping */;
+			targetProxy = 44F0E74C1A48C02600F0816F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		44F0E73F1A48C02500F0816F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				44F0E7401A48C02500F0816F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		44F0E7441A48C02600F0816F /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				44F0E7451A48C02600F0816F /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		44F0E7531A48C02600F0816F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		44F0E7541A48C02600F0816F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		44F0E7561A48C02600F0816F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Jumping/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		44F0E7571A48C02600F0816F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Jumping/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		44F0E7591A48C02600F0816F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = JumpingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Jumping.app/Jumping";
+			};
+			name = Debug;
+		};
+		44F0E75A1A48C02600F0816F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = JumpingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Jumping.app/Jumping";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		44F0E72D1A48C02500F0816F /* Build configuration list for PBXProject "Jumpy Man" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				44F0E7531A48C02600F0816F /* Debug */,
+				44F0E7541A48C02600F0816F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		44F0E7551A48C02600F0816F /* Build configuration list for PBXNativeTarget "Jumping" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				44F0E7561A48C02600F0816F /* Debug */,
+				44F0E7571A48C02600F0816F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		44F0E7581A48C02600F0816F /* Build configuration list for PBXNativeTarget "JumpingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				44F0E7591A48C02600F0816F /* Debug */,
+				44F0E75A1A48C02600F0816F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 44F0E72A1A48C02500F0816F /* Project object */;
+}
