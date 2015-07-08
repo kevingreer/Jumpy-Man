@@ -94,6 +94,8 @@
 		4411EFF21A5EE8F4002BD399 /* GameScene */ = {
 			isa = PBXGroup;
 			children = (
+				44F0E7391A48C02500F0816F /* GameScene.sks */,
+				44F0E73B1A48C02500F0816F /* GameScene.swift */,
 			);
 			name = GameScene;
 			sourceTree = "<group>";
@@ -101,6 +103,8 @@
 		4411EFF31A5EE909002BD399 /* MenuScene */ = {
 			isa = PBXGroup;
 			children = (
+				4411EFF01A5EE854002BD399 /* MenuScene.sks */,
+				4411EFEE1A5EE4AD002BD399 /* MenuScene.swift */,
 			);
 			name = MenuScene;
 			sourceTree = "<group>";
@@ -116,9 +120,21 @@
 			name = "Screens, UI, Images";
 			sourceTree = "<group>";
 		};
+		44670D601A8592C6000542C4 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				44F2F2D31A75A1F100EF6699 /* SettingsScene.swift */,
+				4411EFF31A5EE909002BD399 /* MenuScene */,
+				4411EFF21A5EE8F4002BD399 /* GameScene */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
 		44B796031A6838A4001653C9 /* Characters */ = {
 			isa = PBXGroup;
 			children = (
+				44B795FE1A68277B001653C9 /* Character.swift */,
+				44B796001A682801001653C9 /* Man.swift */,
 			);
 			name = Characters;
 			sourceTree = "<group>";
@@ -145,17 +161,9 @@
 		44F0E7341A48C02500F0816F /* Jumping */ = {
 			isa = PBXGroup;
 			children = (
-				44F2F2D31A75A1F100EF6699 /* SettingsScene.swift */,
-				4411EFF31A5EE909002BD399 /* MenuScene */,
-				4411EFF01A5EE854002BD399 /* MenuScene.sks */,
-				4411EFEE1A5EE4AD002BD399 /* MenuScene.swift */,
+				44670D601A8592C6000542C4 /* Scenes */,
 				44B796031A6838A4001653C9 /* Characters */,
-				44B796001A682801001653C9 /* Man.swift */,
-				44B795FE1A68277B001653C9 /* Character.swift */,
 				4411EFEC1A5DABAF002BD399 /* Barrel.swift */,
-				4411EFF21A5EE8F4002BD399 /* GameScene */,
-				44F0E7391A48C02500F0816F /* GameScene.sks */,
-				44F0E73B1A48C02500F0816F /* GameScene.swift */,
 				44F0E7371A48C02500F0816F /* AppDelegate.swift */,
 				44F0E73D1A48C02500F0816F /* GameViewController.swift */,
 				44B795FC1A634BB9001653C9 /* Extensions.swift */,

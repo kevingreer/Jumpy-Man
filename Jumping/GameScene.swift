@@ -144,7 +144,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
         scoreOutline.verticalAlignmentMode = SKLabelVerticalAlignmentMode.Center
         scoreOutline.position = CGPoint(x: screenWidth/2 + 1, y: screenHeight * 0.75-1)
 //        scoreOutline.zPosition = scoreLabel.zPosition - 0.1
-        self.addChild(scoreOutline)
+//        self.addChild(scoreOutline)
         self.addChild(scoreLabel)
         
         //Setup tap label
