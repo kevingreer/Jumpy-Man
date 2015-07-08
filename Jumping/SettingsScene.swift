@@ -120,10 +120,10 @@ class SettingsScene: SKScene {
         self.addChild(background)
     }
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         /* Called when a touch begins */
         
-        for touch in touches{
+        for touch in touches as! Set<UITouch>{
             let touchedNode = nodeAtPoint(touch.locationInNode(self))
             if touchedNode == menuButton{
                 menuButton.setScale(0.47)
@@ -141,8 +141,8 @@ class SettingsScene: SKScene {
         
     }
     
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-        for touch in touches{
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        for touch in touches as! Set<UITouch>{
             let touchedNode = nodeAtPoint(touch.locationInNode(self))
             menuButton.setScale(0.5)
             bgNode.setScale(0.4)

@@ -1,5 +1,5 @@
 //
-//  Man.swift
+//  Hero.swift
 //  Jumping
 //
 //  Created by Kevin Greer on 1/15/15.
@@ -8,9 +8,9 @@
 
 import SpriteKit
 
-class Man: Hero {
+///A Character that can must be able to run and jump. Just change textures for different characters. Enum of texture groups?
+class Hero: SKSpriteNode {
   
-  var node: SKSpriteNode!
   //Textures
   var idleTexture: SKTexture = SKTexture(imageNamed: "ManIdle")
   var runTexture1: SKTexture = SKTexture(imageNamed: "ManRunning1")
@@ -23,21 +23,21 @@ class Man: Hero {
   
   ///Constructor: creates a Man and his physicsBody of appropriate size from a texture, color, and size
   override init(texture:SKTexture, color:SKColor, size:CGSize) {
-          super.init(texture:texture, color:color, size:size)
-          self.setScale(0.33)
-          self.physicsBody = SKPhysicsBody(texture: idleTexture, size: self.size)
-          self.physicsBody?.categoryBitMask = PhysicsCategory.Man
-          self.physicsBody?.contactTestBitMask = PhysicsCategory.Barrel
-          self.physicsBody?.allowsRotation = false
-          self.physicsBody?.restitution = 0
-          run_anim = SKAction.animateWithTextures([runTexture3, idleTexture, runTexture1, runTexture2], timePerFrame: 0.09)
-          run()
-          self.name = "Man"
-      }
-
-      required init?(coder aDecoder: NSCoder) {
-          super.init(coder: aDecoder)
-      }
+    super.init(texture:texture, color:color, size:size)
+//    self.setScale(0.33)
+//    self.physicsBody = SKPhysicsBody(texture: idleTexture, size: self.size)
+//    self.physicsBody?.categoryBitMask = PhysicsCategory.Man
+//    self.physicsBody?.contactTestBitMask = PhysicsCategory.Barrel
+//    self.physicsBody?.allowsRotation = false
+//    self.physicsBody?.restitution = 0
+    run_anim = SKAction.animateWithTextures([runTexture3, idleTexture, runTexture1, runTexture2], timePerFrame: 0.09)
+    run()
+    self.name = "Man"
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
   //
   //    ///Constructor: creates a Man and his physicsBody of appropriate size
   //    required init?(coder aDecoder: NSCoder, node: SKSpriteNode) {
@@ -61,17 +61,17 @@ class Man: Hero {
   
   ///Causes the Man to jump a given amount
   ///@param impulse = the impulse to be applied to the Man
-  override func jump(impulse: CGFloat) {
-    self.node.removeAllActions()
+  func jump(impulse: CGFloat) {
+    self.removeAllActions()
     let jump_anim = SKAction.animateWithTextures([jumpingTexture1, jumpingTexture2], timePerFrame: 0.25)
-    self.node.runAction(SKAction.repeatAction(jump_anim, count: 1))
-    self.node.physicsBody?.applyImpulse(CGVectorMake(0.0, impulse/6+1.4))
+    self.runAction(SKAction.repeatAction(jump_anim, count: 1))
+    self.physicsBody?.applyImpulse(CGVectorMake(0.0, impulse/6+1.4))
   }
   
   ///Sets the Man's animation to the running animation
-  override func run() {
-    self.node.removeAllActions()
-    self.node.runAction(SKAction.repeatActionForever(run_anim))
+  func run() {
+    self.removeAllActions()
+    self.runAction(SKAction.repeatActionForever(run_anim))
   }
   
   ///Sets the Man's animation to the dead animation (not fully implemented)
@@ -80,5 +80,4 @@ class Man: Hero {
     self.texture = runTexture2
     self.runAction(SKAction.rotateByAngle(3.14159/2, duration: 0.25))
   }
-  
 }

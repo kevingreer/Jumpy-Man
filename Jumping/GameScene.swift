@@ -11,11 +11,11 @@ import UIKit
 import AVFoundation
 
 struct PhysicsCategory {
-    static let None  : UInt32 = 0
+    static let None  : UInt32 = 0x1
     static let All   : UInt32 = UInt32.max
-    static let Man   : UInt32 = 0b1
-    static let Barrel: UInt32 = 0b10
-    static let Ground: UInt32 = 0b11
+    static let Man   : UInt32 = 0x1 << 1
+    static let Barrel: UInt32 = 0x1 << 2
+    static let Ground: UInt32 = 0x1 << 3
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
@@ -29,9 +29,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     let runningTexture = SKTexture(imageNamed: "MarioRunning")
     let jumpingTexture = SKTexture(imageNamed: "MarioJumping")
     let groundTexture = SKTexture(imageNamed: "Ground")
+    let backgroundTexture = SKTexture(imageNamed: "Background")
+    let grassTexture = SKTexture(imageNamed: "Grass")
 
     //Nodes
-    let man = Man(texture: SKTexture(imageNamed: "ManRunning1"), color: UIColor.whiteColor(), size: SKTexture(imageNamed: "ManRunning1").size())
+    var man: Man!
     let scoreLabel = SKLabelNode()
     let scoreOutline = SKLabelNode()
     let tapNode = SKLabelNode()
@@ -92,41 +94,41 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
         self.physicsWorld.contactDelegate = self
         
         //Background
-        self.backgroundColor = UIColor.blackColor()
-        background.setScale(2)
-        background.position = CGPointMake(background.size.width/2, screenHeight - background.size.height/2)
+        let bg = childNodeWithName("background") as! SKSpriteNode
+        bg.texture = backgroundTexture
         let bgMovement = SKAction.moveByX(-1024, y: 0, duration: 50)
         let bgReplacement = SKAction.moveByX(1024, y: 0, duration: 0)
-        background.runAction(SKAction.repeatActionForever(SKAction.sequence([bgMovement, bgReplacement])))
-        background.zPosition = CGFloat.min
-        background.runAction(SKAction.repeatActionForever(SKAction.moveByX(-2, y: 0, duration: 1)))
-        self.addChild(background)
-        
+        bg.runAction(SKAction.repeatActionForever(SKAction.sequence([bgMovement, bgReplacement])))
+      
         //Ground
-        ground.position = CGPointMake(screenWidth/2, GROUND_HEIGHT/2)
-        ground.size = CGSizeMake(screenWidth, GROUND_HEIGHT)
-        ground.physicsBody = SKPhysicsBody(rectangleOfSize: ground.size)
-        ground.physicsBody?.dynamic = false
-        ground.physicsBody?.allowsRotation = false
-        ground.physicsBody?.categoryBitMask = PhysicsCategory.Ground
-        ground.physicsBody?.contactTestBitMask = PhysicsCategory.Man
-        ground.name = "Ground"
-        ground.physicsBody?.restitution = 0
-        ground.zPosition = 0.2
-        self.addChild(ground)
-        
+        let ground = childNodeWithName("ground") as! SKSpriteNode
+        ground.texture = groundTexture
+//        ground.position = CGPointMake(screenWidth/2, GROUND_HEIGHT/2)
+//        ground.size = CGSizeMake(screenWidth, GROUND_HEIGHT)
+//        ground.physicsBody = SKPhysicsBody(rectangleOfSize: ground.size)
+//        ground.physicsBody?.dynamic = false
+//        ground.physicsBody?.allowsRotation = false
+//        ground.physicsBody?.categoryBitMask = PhysicsCategory.Ground
+//        ground.physicsBody?.contactTestBitMask = PhysicsCategory.Man
+//        ground.name = "Ground"
+//        ground.physicsBody?.restitution = 0
+//        ground.zPosition = 0.2
+//        self.addChild(ground)
+      
         //Grass
-        grass.position = CGPointMake(screenWidth/2, GROUND_HEIGHT+grass.size.height/2)
-        grass.zPosition = 0.1
-        self.addChild(grass)
+        let grass = childNodeWithName("grass") as! SKSpriteNode
+        grass.texture = grassTexture
         let grassMovement = SKAction.moveByX(-33, y: 0, duration: 0.3)
         let grassReplacement = SKAction.moveByX(33, y: 0, duration: 0)
         grass.runAction(SKAction.repeatActionForever(SKAction.sequence([grassMovement, grassReplacement])))
         
         //Man
-        man.position = CGPointMake(screenWidth * 0.40, GROUND_HEIGHT+man.size.height/2)
-        self.addChild(man)
-        
+//        man.position = CGPointMake(screenWidth * 0.40, GROUND_HEIGHT+man.size.height/2)
+        let manNode = childNodeWithName("Man") as! SKSpriteNode
+      let man = Man(coder: NSCoder())!
+      man.node = manNode
+//        self.addChild(man)
+      
         //Setup score label
         scoreLabel.fontName = "04b_19"
         scoreLabel.text = "0"
@@ -217,9 +219,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
 
     }
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         
-        for touch: AnyObject in touches {
+        for touch: AnyObject in touches as! Set<UITouch>{
             
             let touchedNode = nodeAtPoint(touch.locationInNode(self))
             if touchedNode == retryButton{
@@ -239,8 +241,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
         }
     }
     
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-        for touch: AnyObject in touches {
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        for touch in touches as! Set<UITouch>{
             
             retryButton.setScale(0.5)
             menuButton.setScale(0.5)
