@@ -12,7 +12,6 @@
 		4411EFF11A5EE854002BD399 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4411EFF01A5EE854002BD399 /* MenuScene.sks */; };
 		44B795FD1A634BB9001653C9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B795FC1A634BB9001653C9 /* Extensions.swift */; };
 		44B795FF1A68277B001653C9 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B795FE1A68277B001653C9 /* Hero.swift */; };
-		44B796011A682801001653C9 /* Man.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B796001A682801001653C9 /* Man.swift */; };
 		44C3DA071A7D7CCE00523C4E /* 04B_19.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 44C3DA061A7D7A2000523C4E /* 04B_19.TTF */; };
 		44F0E7381A48C02500F0816F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F0E7371A48C02500F0816F /* AppDelegate.swift */; };
 		44F0E73A1A48C02500F0816F /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 44F0E7391A48C02500F0816F /* GameScene.sks */; };
@@ -30,6 +29,7 @@
 		44F2F2D01A755F4C00EF6699 /* Jumper.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44F2F2CF1A755F4C00EF6699 /* Jumper.mp3 */; };
 		44F2F2D21A75649900EF6699 /* CartoonPunch.wav in Resources */ = {isa = PBXBuildFile; fileRef = 44F2F2D11A75649900EF6699 /* CartoonPunch.wav */; };
 		44F2F2D41A75A1F100EF6699 /* SettingsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F2F2D31A75A1F100EF6699 /* SettingsScene.swift */; };
+		44F426061B4D9F24009495E5 /* SettingsScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 44F426051B4D9F24009495E5 /* SettingsScene.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +48,6 @@
 		4411EFF01A5EE854002BD399 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
 		44B795FC1A634BB9001653C9 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		44B795FE1A68277B001653C9 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
-		44B796001A682801001653C9 /* Man.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Man.swift; sourceTree = "<group>"; };
 		44C3DA061A7D7A2000523C4E /* 04B_19.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = 04B_19.TTF; sourceTree = "<group>"; };
 		44F0E7321A48C02500F0816F /* Jumping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jumping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44F0E7361A48C02500F0816F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -70,6 +69,7 @@
 		44F2F2CF1A755F4C00EF6699 /* Jumper.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Jumper.mp3; sourceTree = "<group>"; };
 		44F2F2D11A75649900EF6699 /* CartoonPunch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = CartoonPunch.wav; sourceTree = "<group>"; };
 		44F2F2D31A75A1F100EF6699 /* SettingsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScene.swift; sourceTree = "<group>"; };
+		44F426051B4D9F24009495E5 /* SettingsScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SettingsScene.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				44F2F2D31A75A1F100EF6699 /* SettingsScene.swift */,
+				44F426051B4D9F24009495E5 /* SettingsScene.sks */,
 				4411EFF31A5EE909002BD399 /* MenuScene */,
 				4411EFF21A5EE8F4002BD399 /* GameScene */,
 			);
@@ -134,7 +135,6 @@
 			isa = PBXGroup;
 			children = (
 				44B795FE1A68277B001653C9 /* Hero.swift */,
-				44B796001A682801001653C9 /* Man.swift */,
 			);
 			name = Characters;
 			sourceTree = "<group>";
@@ -295,6 +295,7 @@
 				44C3DA071A7D7CCE00523C4E /* 04B_19.TTF in Resources */,
 				44F0E7461A48C02600F0816F /* LaunchScreen.xib in Resources */,
 				44F0E7431A48C02600F0816F /* Images.xcassets in Resources */,
+				44F426061B4D9F24009495E5 /* SettingsScene.sks in Resources */,
 				44F0E73A1A48C02500F0816F /* GameScene.sks in Resources */,
 				44F2F2D01A755F4C00EF6699 /* Jumper.mp3 in Resources */,
 				44F2F2CA1A75530F00EF6699 /* Running.wav in Resources */,
@@ -328,7 +329,6 @@
 				44F0E73E1A48C02500F0816F /* GameViewController.swift in Sources */,
 				44F0E7381A48C02500F0816F /* AppDelegate.swift in Sources */,
 				44B795FD1A634BB9001653C9 /* Extensions.swift in Sources */,
-				44B796011A682801001653C9 /* Man.swift in Sources */,
 				44B795FF1A68277B001653C9 /* Hero.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

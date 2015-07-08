@@ -47,18 +47,18 @@ class MenuScene: SKScene{
     settingsButton.texture = SKTexture(imageNamed: "SettingsButton")
     
     //Ground
-    let ground = childNodeWithName("ground") as! SKSpriteNode
+    let ground = childNodeWithName("Ground") as! SKSpriteNode
     ground.texture = SKTexture(imageNamed: "Ground")
     
     //Grass
-    let grass = childNodeWithName("grass") as! SKSpriteNode
+    let grass = childNodeWithName("Grass") as! SKSpriteNode
     grass.texture = SKTexture(imageNamed: "Grass")
     let grassMovement = SKAction.moveByX(-33, y: 0, duration: 0.3)
     let grassReplacement = SKAction.moveByX(33, y: 0, duration: 0)
     grass.runAction(SKAction.repeatActionForever(SKAction.sequence([grassMovement, grassReplacement])))
     
     //Background
-    let bg = childNodeWithName("background") as! SKSpriteNode
+    let bg = childNodeWithName("Background") as! SKSpriteNode
     bg.texture = SKTexture(imageNamed: "Background")
     let bgMovement = SKAction.moveByX(-1024, y: 0, duration: 50)
     let bgReplacement = SKAction.moveByX(1024, y: 0, duration: 0)
