@@ -20,11 +20,13 @@ struct PhysicsCategory {
 
 class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
   
-  //Bounds
+  //MARK:- Properties
+  
+  //MARK: Bounds
   var screenWidth: CGFloat!
   var screenHeight: CGFloat!
   
-  //Textures
+  //MARK: Textures
   let idleTexture = SKTexture(imageNamed: "Mario")
   let runningTexture = SKTexture(imageNamed: "MarioRunning")
   let jumpingTexture = SKTexture(imageNamed: "MarioJumping")
@@ -32,7 +34,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
   let backgroundTexture = SKTexture(imageNamed: "Background")
   let grassTexture = SKTexture(imageNamed: "Grass")
   
-  //Nodes
+  //MARK: Nodes
   var hero: Hero!
   let scoreLabel =  SKLabelNode()
   let tapNode = SKLabelNode()
@@ -49,13 +51,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
   var ground: SKSpriteNode!
   var background: SKSpriteNode!
   
-  //Audio players
+  //MARK: Audio players
   var backgroundMusicPlayer: AVAudioPlayer!
   var audioPlayer: AVAudioPlayer!
   
-  //Misc
+  //MARK: Misc
   var ihd = false //Is holding down: indicates user is holding down the screen
-  let JumpTolerance: CGFloat = 20
+  let JumpTolerance: CGFloat = 30
   let ButtonInitialScale: CGFloat = 0.6
   let ButtonReducedScale: CGFloat = 0.57
   var barrelSpawnPoint: CGPoint!
@@ -69,19 +71,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
   var gamePaused = false
   var centerPoint: CGPoint!
   var barrels: [Barrel] = []
-  var timeInterval: NSTimeInterval = 2.0
   var score: Int = 0
   var run_anim: SKAction!
   var gameIsOver = false
   
-  //Physics
-  let GRAVITY: CGFloat = 20.0
+  //MARK: Physics
+  let GRAVITY: CGFloat = 30.0
   let BARREL_SPEED = 0.03
   
-  //Sounds
+  //MARK: Sounds
   let jumpSound = SKAction.playSoundFileNamed("JumpSound.wav", waitForCompletion: false)
   let runSound = SKAction.playSoundFileNamed("RunningGrass.wav", waitForCompletion: true)
   
+  let sfxState = NSUserDefaults.standardUserDefaults().boolForKey("sfxState")
+  
+  //MARK:- SKScene
   override func didMoveToView(view: SKView) {
     
     //Set bounds
@@ -98,22 +102,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     //Background
     background = childNodeWithName("Background") as! SKSpriteNode
     background.texture = backgroundTexture
-    let bgMovement = SKAction.moveByX(-1024, y: 0, duration: 50)
-    let bgReplacement = SKAction.moveByX(1024, y: 0, duration: 0)
+    let dx = background.size.width/2
+    let bgMovement = SKAction.moveByX(-dx, y: 0, duration: 50)
+    let bgReplacement = SKAction.moveByX(dx, y: 0, duration: 0)
     background.runAction(SKAction.repeatActionForever(SKAction.sequence([bgMovement, bgReplacement])))
     
     //Ground
     ground = childNodeWithName("Ground") as! SKSpriteNode
     ground.texture = groundTexture
     ground.physicsBody?.categoryBitMask = PhysicsCategory.Ground
+//    ground.physicsBody?.collisionBitMask = PhysicsCategory.Ground
     ground.physicsBody?.contactTestBitMask = PhysicsCategory.Man
+    ground.physicsBody?.dynamic = false
+    let groundMovement = SKAction.moveByX(-666, y: 0, duration: 2.0)
+    let groundReplacement = SKAction.moveByX(666, y: 0, duration: 0)
+    ground.runAction(SKAction.repeatActionForever(SKAction.sequence([groundMovement, groundReplacement])))
     
     //Grass
-    grass = childNodeWithName("Grass") as! SKSpriteNode
-    grass.texture = grassTexture
-    let grassMovement = SKAction.moveByX(-33, y: 0, duration: 0.3)
-    let grassReplacement = SKAction.moveByX(33, y: 0, duration: 0)
-    grass.runAction(SKAction.repeatActionForever(SKAction.sequence([grassMovement, grassReplacement])))
+//    grass = childNodeWithName("Grass") as! SKSpriteNode
+//    grass.texture = grassTexture
+//    let grassMovement = SKAction.moveByX(-50, y: 0, duration: 0.3)
+//    let grassReplacement = SKAction.moveByX(50, y: 0, duration: 0)
+//    grass.runAction(SKAction.repeatActionForever(SKAction.sequence([grassMovement, grassReplacement])))
+//    grass.hidden = true
     
     //Hero
     let spawnPoint = childNodeWithName("SpawnPoint")!
@@ -163,12 +174,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     
     //Score Box
     scoreBox = childNodeWithName("ScoreBox") as! SKSpriteNode
+    scoreBox.texture = SKTexture(imageNamed: "ScoreBox")
 //    scoreBox.hidden = true
     
     retryButton = childNodeWithName("RetryButton") as! SKSpriteNode
+    retryButton.texture = SKTexture(imageNamed: "RetryButton")
 //    retryButton.hidden = true
     
     menuButton = childNodeWithName("MenuButton") as! SKSpriteNode
+    menuButton.texture = SKTexture(imageNamed: "MenuButton")
     
     endScoreLabel = scoreBox.childNodeWithName("ScoreLabel") as! SKLabelNode
     
@@ -177,9 +191,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     if (NSUserDefaults.standardUserDefaults().boolForKey("musicState")){
       playBackgroundMusic("Jumper.mp3")
     }
-    if (NSUserDefaults.standardUserDefaults().boolForKey("sfxState")){
-      playRunningSound("RunningGrass.wav")
-    }
+//    if (NSUserDefaults.standardUserDefaults().boolForKey("sfxState")){
+//      playRunningSound("RunningGrass.wav")
+//    }
     
     let point = childNodeWithName("BarrelSpawnPoint")!
     barrelSpawnPoint = point.position
@@ -194,7 +208,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     for touch: AnyObject in touches as! Set<UITouch>{
       
       let touchedNode = nodeAtPoint(touch.locationInNode(self))
-      println(touchedNode.name)
       if touchedNode == retryButton{
         retryButton.setScale(ButtonReducedScale)
       }
@@ -204,7 +217,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
       if !started{
         tapNode.removeFromParent()
         started = true
-        timer = NSTimer.scheduledTimerWithTimeInterval(timeInterval, target: self, selector: "fireTimer:", userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(BarrelTimeManager.sharedInstance.InitialInterval, target: self, selector: "fireTimer:", userInfo: nil, repeats: true)
       }
       if heroCanJump() && !gamePaused{
         jump()
@@ -253,9 +266,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
   
   ///Functions that must be done while the Character is jumping
   func jump(){
-    if (NSUserDefaults.standardUserDefaults().boolForKey("sfxState")){
+    if (sfxState){
       self.runAction(jumpSound)
-      audioPlayer.pause()
+//      audioPlayer.pause()
     }
     hero.jump()
   }
@@ -263,15 +276,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
   ///Functions that must be done when the Character lands
   func land(){
     hero.land()
-    if (!gameIsOver && NSUserDefaults.standardUserDefaults().boolForKey("sfxState")){
-      audioPlayer.play()
-    }
+//    if (!gameIsOver && NSUserDefaults.standardUserDefaults().boolForKey("sfxState")){
+//      audioPlayer.play()
+//    }
     
   }
   
   ///Creates a Barrel offscreen and sets it in motion
   func spawnBarrel() {
     let barrel = Barrel(spawnPoint: barrelSpawnPoint)
+    
+    if BarrelTimeManager.sharedInstance.sendFast {
+      barrel.changeSpeed(Barrel.FastSpeed)
+    }
+    
     
     self.addChild(barrel)
     
@@ -299,18 +317,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
   
   ///Spawns a Barrel and alters the time interval of the timer.
   func fireTimer(sender: NSTimer) {
-    let MINIMUM = 0.63
-    let VARIANCE = 0.25
-    let breatherChance: CGFloat = 0.05  // a breather gives the player a longer space between Barrels (1 second)
     spawnBarrel()
-    let breatherResult = CGFloat(drand48())
-    if (breatherResult<breatherChance){
-      timeInterval = 1
-    }
-    else{
-      timeInterval = NSTimeInterval(CGFloat(drand48() * VARIANCE + MINIMUM))
-    }
-    timer.fireDate = timer.fireDate.dateByAddingTimeInterval(timeInterval)
+
+    let newInterval = BarrelTimeManager.sharedInstance.getNextTime()
+    timer.fireDate = timer.fireDate.dateByAddingTimeInterval(newInterval)
   }
   
   // MARK: - SKPhysicsContactDelegate
@@ -322,12 +332,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     
     if ( (one.categoryBitMask == PhysicsCategory.Barrel || two.categoryBitMask == PhysicsCategory.Barrel) &&
       (one.categoryBitMask == PhysicsCategory.Man || two.categoryBitMask == PhysicsCategory.Man) ){
-        gameOver()
+        if !gameIsOver {gameOver()}
     }
     
     if ( (one.categoryBitMask == PhysicsCategory.Ground || two.categoryBitMask == PhysicsCategory.Ground) &&
       (one.categoryBitMask == PhysicsCategory.Man || two.categoryBitMask == PhysicsCategory.Man) ){
-        land();
+        if !gameIsOver {land()}
     }
   }
   
@@ -342,12 +352,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     
     if (!gameIsOver && NSUserDefaults.standardUserDefaults().boolForKey("sfxState")){
       self.runAction(SKAction.playSoundFileNamed("CartoonPunch.wav", waitForCompletion: false))
-      audioPlayer.stop()
+//      audioPlayer.stop()
     }
+    
+    BarrelTimeManager.sharedInstance.reset()
     
     pause()
     pauseNode.removeFromParent()
     scoreLabel.removeFromParent()
+    ground.removeAllActions()
     gameOverFlash.position = centerPoint
     gameOverFlash.hidden = false
     gameOverFlash.runAction(SKAction.fadeAlphaTo(0.0, duration: 0.5))
@@ -363,9 +376,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     let highScore = NSUserDefaults.standardUserDefaults().integerForKey("high score")
     if score > highScore{
       NSUserDefaults.standardUserDefaults().setInteger(score, forKey: "high score")
+      highScoreLabel.text = "BEST  \(score)"
+    } else {
+      highScoreLabel.text = "BEST  \(highScore)"
     }
-    highScoreLabel.text = "BEST  \(highScore)"
-    retryButton.runAction(SKAction.moveTo(CGPointMake(screenWidth/2, screenHeight * 0.3), duration: 0.6))
+    retryButton.runAction(SKAction.moveTo(CGPointMake(screenWidth/2, screenHeight * 0.3 + 50), duration: 0.6))
     menuButton.runAction(SKAction.moveTo(CGPointMake(screenWidth/2, screenHeight * 0.2), duration: 0.7))
     timer.invalidate()
     gameIsOver = true
@@ -379,8 +394,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
       b.paused = true
       b.physicsBody?.dynamic = false
     }
-    hero.paused = true
-    grass.paused = true
+    hero.die()
     //man.physicsBody?.dynamic = false
     if started{
       timer.invalidate()
@@ -396,10 +410,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
       b.physicsBody?.dynamic = true
     }
     hero.paused = false
-    grass.paused = false
     //man.physicsBody?.dynamic = true
     if started{
-      timer = NSTimer.scheduledTimerWithTimeInterval(timeInterval, target: self, selector: "fireTimer:", userInfo: nil, repeats: true)
+//      timer = NSTimer.scheduledTimerWithTimeInterval(timeInterval, target: self, selector: "fireTimer:", userInfo: nil, repeats: true)
     }
     
     pauseFade.hidden = true

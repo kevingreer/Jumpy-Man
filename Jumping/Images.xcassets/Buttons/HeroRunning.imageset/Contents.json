@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "ground2.png"
+      "filename" : "HeroRunning3.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "ground2-1.png"
+      "filename" : "HeroRunning3-1.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "ground2-1-1.png"
+      "filename" : "HeroRunning3-1-1.png"
     }
   ],
   "info" : {

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "44F0E7311A48C02500F0816F"
-               BuildableName = "Jumping.app"
+               BuildableName = "Jumpy Man.app"
                BlueprintName = "Jumping"
                ReferencedContainer = "container:Jumpy Man.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "44F0E7311A48C02500F0816F"
-            BuildableName = "Jumping.app"
+            BuildableName = "Jumpy Man.app"
             BlueprintName = "Jumping"
             ReferencedContainer = "container:Jumpy Man.xcodeproj">
          </BuildableReference>
@@ -72,11 +72,12 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "44F0E7311A48C02500F0816F"
-            BuildableName = "Jumping.app"
+            BuildableName = "Jumpy Man.app"
             BlueprintName = "Jumping"
             ReferencedContainer = "container:Jumpy Man.xcodeproj">
          </BuildableReference>
@@ -90,11 +91,12 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "44F0E7311A48C02500F0816F"
-            BuildableName = "Jumping.app"
+            BuildableName = "Jumpy Man.app"
             BlueprintName = "Jumping"
             ReferencedContainer = "container:Jumpy Man.xcodeproj">
          </BuildableReference>

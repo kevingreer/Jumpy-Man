@@ -60,9 +60,9 @@ extension SKScene{
         if let scene = GameScene.unarchiveGameSceneFromFile("GameScene") as? GameScene {
             // Configure the view.
             let skView = self.view!
-            skView.showsFPS = true
-            skView.showsNodeCount = true
-            
+//            skView.showsFPS = true
+//            skView.showsNodeCount = true
+          
             /* Sprite Kit applies additional optimizations to improve rendering performance */
             skView.ignoresSiblingOrder = true
             
@@ -72,15 +72,6 @@ extension SKScene{
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 1.0)
             skView.presentScene(scene, transition: transition)
         }
-      
-
-        
-//        let scene = GameScene(size: self.size)
-//        let skView = self.view!
-////        skView.showsFPS = true
-////        skView.showsNodeCount = true
-//        scene.scaleMode = .AspectFill
-//        skView.presentScene(scene, transition: transition)
     }
     
     ///Shortcut for presenting a MenuScene from another SKScene
@@ -89,8 +80,8 @@ extension SKScene{
       if let scene = MenuScene.unarchiveMenuSceneFromFile("MenuScene") as? MenuScene {
         // Configure the view.
         let skView = self.view!
-        skView.showsFPS = true
-        skView.showsNodeCount = true
+//        skView.showsFPS = true
+//        skView.showsNodeCount = true
         
         /* Sprite Kit applies additional optimizations to improve rendering performance */
         skView.ignoresSiblingOrder = true
@@ -113,8 +104,8 @@ extension SKScene{
       if let scene = SettingsScene.unarchiveSettingsSceneFromFile("SettingsScene") as? SettingsScene {
         // Configure the view.
         let skView = self.view!
-        skView.showsFPS = true
-        skView.showsNodeCount = true
+//        skView.showsFPS = true
+//        skView.showsNodeCount = true
         
         /* Sprite Kit applies additional optimizations to improve rendering performance */
         skView.ignoresSiblingOrder = true
@@ -123,7 +114,7 @@ extension SKScene{
         scene.scaleMode = .AspectFill
         
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 1.0)
-        skView.presentScene(scene, transition: transition)
+        skView.presentScene(scene)
       }
     }
 }

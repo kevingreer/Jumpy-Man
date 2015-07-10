@@ -49,19 +49,25 @@ class MenuScene: SKScene{
     //Ground
     let ground = childNodeWithName("Ground") as! SKSpriteNode
     ground.texture = SKTexture(imageNamed: "Ground")
+    ground.physicsBody = nil
+    let groundMovement = SKAction.moveByX(-740, y: 0, duration: 2.0)
+    let groundReplacement = SKAction.moveByX(740, y: 0, duration: 0)
+    ground.runAction(SKAction.repeatActionForever(SKAction.sequence([groundMovement, groundReplacement])))
     
     //Grass
-    let grass = childNodeWithName("Grass") as! SKSpriteNode
-    grass.texture = SKTexture(imageNamed: "Grass")
-    let grassMovement = SKAction.moveByX(-33, y: 0, duration: 0.3)
-    let grassReplacement = SKAction.moveByX(33, y: 0, duration: 0)
-    grass.runAction(SKAction.repeatActionForever(SKAction.sequence([grassMovement, grassReplacement])))
+//    let grass = childNodeWithName("Grass") as! SKSpriteNode
+//    grass.texture = SKTexture(imageNamed: "Grass")
+//    let grassMovement = SKAction.moveByX(-33, y: 0, duration: 0.3)
+//    let grassReplacement = SKAction.moveByX(33, y: 0, duration: 0)
+//    grass.runAction(SKAction.repeatActionForever(SKAction.sequence([grassMovement, grassReplacement])))
+//    grass.hidden = true
     
     //Background
     let bg = childNodeWithName("Background") as! SKSpriteNode
     bg.texture = SKTexture(imageNamed: "Background")
-    let bgMovement = SKAction.moveByX(-1024, y: 0, duration: 50)
-    let bgReplacement = SKAction.moveByX(1024, y: 0, duration: 0)
+    let dx = bg.size.width/2
+    let bgMovement = SKAction.moveByX(-dx, y: 0, duration: 50)
+    let bgReplacement = SKAction.moveByX(dx, y: 0, duration: 0)
     bg.runAction(SKAction.repeatActionForever(SKAction.sequence([bgMovement, bgReplacement])))
   
     

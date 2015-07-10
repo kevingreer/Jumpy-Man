@@ -11,9 +11,12 @@ import SpriteKit
 ///An SKSpriteNode with a point field to keep track of when a Character clears the Barrel.
 class Barrel: SKSpriteNode {
   
+  static let DefaultSpeed: CGFloat = 750
+  static let FastSpeed: CGFloat = 2000
+  
   var prevPosition: CGPoint!
-  let Diameter: CGFloat = 100
-  let Speed: CGFloat = 500
+  let Diameter: CGFloat = 125
+  var dx: CGFloat!
   let barrelTexture = SKTexture(imageNamed: "Barrel")
   
   init(spawnPoint: CGPoint) {
@@ -26,12 +29,20 @@ class Barrel: SKSpriteNode {
     self.physicsBody = SKPhysicsBody(circleOfRadius: Diameter/2)
     self.physicsBody?.categoryBitMask = PhysicsCategory.Barrel
     self.physicsBody?.contactTestBitMask = PhysicsCategory.Man
-    let moveBarrel = SKAction.moveByX(-Speed, y: 0.0, duration: 1)
-    self.runAction(SKAction.repeatActionForever(moveBarrel))
+    self.physicsBody?.collisionBitMask = PhysicsCategory.Barrel | PhysicsCategory.Ground
+//    let moveBarrel = SKAction.moveByX(-Speed, y: 0.0, duration: 1)
+//    self.runAction(SKAction.repeatActionForever(moveBarrel))
     prevPosition = spawnPoint
+    dx = Barrel.DefaultSpeed
+    self.physicsBody?.velocity.dx = -dx
   }
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
+  }
+  
+  func changeSpeed(dx: CGFloat){
+    self.dx = dx
+    self.physicsBody?.velocity.dx = -dx
   }
 }

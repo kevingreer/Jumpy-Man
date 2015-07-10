@@ -44,7 +44,7 @@ class SettingsScene: SKScene {
     if NSUserDefaults.standardUserDefaults().boolForKey("musicState"){
       musicButton.texture = onTexture
     } else {
-      musicButton.texture = onTexture
+      musicButton.texture = offTexture
     }
     
     //SFX Button
@@ -52,7 +52,7 @@ class SettingsScene: SKScene {
     if NSUserDefaults.standardUserDefaults().boolForKey("sfxState"){
       sfxButton.texture = onTexture
     } else {
-      sfxButton.texture = onTexture
+      sfxButton.texture = offTexture
     }
     
     //Reset Button
@@ -67,19 +67,17 @@ class SettingsScene: SKScene {
     //Ground
     let ground = childNodeWithName("Ground") as! SKSpriteNode
     ground.texture = SKTexture(imageNamed: "Ground")
-    
-    //Grass
-    let grass = childNodeWithName("Grass") as! SKSpriteNode
-    grass.texture = SKTexture(imageNamed: "Grass")
-    let grassMovement = SKAction.moveByX(-33, y: 0, duration: 0.3)
-    let grassReplacement = SKAction.moveByX(33, y: 0, duration: 0)
-    grass.runAction(SKAction.repeatActionForever(SKAction.sequence([grassMovement, grassReplacement])))
+    ground.physicsBody = nil
+    let groundMovement = SKAction.moveByX(-740, y: 0, duration: 2.0)
+    let groundReplacement = SKAction.moveByX(740, y: 0, duration: 0)
+    ground.runAction(SKAction.repeatActionForever(SKAction.sequence([groundMovement, groundReplacement])))
     
     //Background
     let bg = childNodeWithName("Background") as! SKSpriteNode
     bg.texture = SKTexture(imageNamed: "Background")
-    let bgMovement = SKAction.moveByX(-1024, y: 0, duration: 50)
-    let bgReplacement = SKAction.moveByX(1024, y: 0, duration: 0)
+    let dx = bg.size.width/2
+    let bgMovement = SKAction.moveByX(-dx, y: 0, duration: 50)
+    let bgReplacement = SKAction.moveByX(dx, y: 0, duration: 0)
     bg.runAction(SKAction.repeatActionForever(SKAction.sequence([bgMovement, bgReplacement])))
   }
   
@@ -132,6 +130,7 @@ class SettingsScene: SKScene {
           sfxButton.texture = onTexture
         }
         else{
+          println("swag")
           sfxButton.texture = offTexture
         }
         NSUserDefaults.standardUserDefaults().setBool(!state, forKey: "sfxState")

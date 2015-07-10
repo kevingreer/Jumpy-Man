@@ -11,7 +11,7 @@ import SpriteKit
 ///A Character that can must be able to run and jump. Just change textures for different characters. Enum of texture groups?
 class Hero: SKSpriteNode {
   
-  let InitialImpulse: CGFloat = 250
+  let InitialImpulse: CGFloat = 450
   let Force: CGFloat = 500
   
   var isJumping = false
@@ -33,7 +33,7 @@ class Hero: SKSpriteNode {
     super.init(texture: idleTexture, color: nil, size: idleTexture.size())
     self.setScale(0.75)
     self.texture = idleTexture
-    self.physicsBody = SKPhysicsBody(texture: idleTexture, alphaThreshold: 0.1, size: self.size)
+    self.physicsBody = SKPhysicsBody(texture: jumpingTexture1, alphaThreshold: 0.1, size: self.size)
     self.physicsBody?.categoryBitMask = PhysicsCategory.Man
     self.physicsBody?.contactTestBitMask = PhysicsCategory.Barrel
     
@@ -43,7 +43,7 @@ class Hero: SKSpriteNode {
     self.physicsBody?.linearDamping = 0
     self.physicsBody?.angularDamping = 0
     
-    run_anim = SKAction.animateWithTextures([runTexture3, idleTexture, runTexture1, runTexture2], timePerFrame: 0.09)
+    run_anim = SKAction.animateWithTextures([runTexture3, runTexture1, runTexture2], timePerFrame: 0.09)
     run()
     self.name = "Hero"
   }
@@ -57,6 +57,7 @@ class Hero: SKSpriteNode {
   func jump() {
     isJumping = true
     self.removeAllActions()
+    self.physicsBody?.velocity = CGVectorMake(0, 0)
     self.physicsBody?.applyImpulse(CGVectorMake(0.0, InitialImpulse))
   }
   
@@ -74,8 +75,15 @@ class Hero: SKSpriteNode {
   ///Sets the Man's animation to the dead animation (not fully implemented)
   func die (){
     self.removeAllActions()
-    self.texture = runTexture2
-    self.runAction(SKAction.rotateByAngle(3.14159/2, duration: 0.25))
+    self.physicsBody?.velocity = CGVectorMake(0, 0)
+    self.runAction(SKAction.rotateByAngle(3.14159*2, duration: 2))
+    self.physicsBody?.applyImpulse(CGVectorMake(0.0, InitialImpulse))
+    self.physicsBody?.collisionBitMask = PhysicsCategory.None
+    self.zPosition = 1
+//    self.runAction(SKAction.move)
+//    self.texture = runTexture2
+//    self.physicsBody = nil
+
   }
   
   func applyForce(){

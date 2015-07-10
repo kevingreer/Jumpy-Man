@@ -10,6 +10,7 @@
 		4411EFED1A5DABAF002BD399 /* Barrel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411EFEC1A5DABAF002BD399 /* Barrel.swift */; };
 		4411EFEF1A5EE4AD002BD399 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411EFEE1A5EE4AD002BD399 /* MenuScene.swift */; };
 		4411EFF11A5EE854002BD399 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4411EFF01A5EE854002BD399 /* MenuScene.sks */; };
+		44A411361B4F25EE00186FB9 /* BarrelTimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A411351B4F25EE00186FB9 /* BarrelTimeManager.swift */; };
 		44B795FD1A634BB9001653C9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B795FC1A634BB9001653C9 /* Extensions.swift */; };
 		44B795FF1A68277B001653C9 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B795FE1A68277B001653C9 /* Hero.swift */; };
 		44C3DA071A7D7CCE00523C4E /* 04B_19.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 44C3DA061A7D7A2000523C4E /* 04B_19.TTF */; };
@@ -46,10 +47,11 @@
 		4411EFEC1A5DABAF002BD399 /* Barrel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Barrel.swift; sourceTree = "<group>"; };
 		4411EFEE1A5EE4AD002BD399 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		4411EFF01A5EE854002BD399 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
+		44A411351B4F25EE00186FB9 /* BarrelTimeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarrelTimeManager.swift; sourceTree = "<group>"; };
 		44B795FC1A634BB9001653C9 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		44B795FE1A68277B001653C9 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		44C3DA061A7D7A2000523C4E /* 04B_19.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = 04B_19.TTF; sourceTree = "<group>"; };
-		44F0E7321A48C02500F0816F /* Jumping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jumping.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		44F0E7321A48C02500F0816F /* Jumpy Man.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Jumpy Man.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		44F0E7361A48C02500F0816F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44F0E7371A48C02500F0816F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44F0E7391A48C02500F0816F /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -103,8 +105,8 @@
 		4411EFF31A5EE909002BD399 /* MenuScene */ = {
 			isa = PBXGroup;
 			children = (
-				4411EFF01A5EE854002BD399 /* MenuScene.sks */,
 				4411EFEE1A5EE4AD002BD399 /* MenuScene.swift */,
+				4411EFF01A5EE854002BD399 /* MenuScene.sks */,
 			);
 			name = MenuScene;
 			sourceTree = "<group>";
@@ -152,7 +154,7 @@
 		44F0E7331A48C02500F0816F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				44F0E7321A48C02500F0816F /* Jumping.app */,
+				44F0E7321A48C02500F0816F /* Jumpy Man.app */,
 				44F0E74B1A48C02600F0816F /* JumpingTests.xctest */,
 			);
 			name = Products;
@@ -164,6 +166,7 @@
 				44670D601A8592C6000542C4 /* Scenes */,
 				44B796031A6838A4001653C9 /* Characters */,
 				4411EFEC1A5DABAF002BD399 /* Barrel.swift */,
+				44A411351B4F25EE00186FB9 /* BarrelTimeManager.swift */,
 				44F0E7371A48C02500F0816F /* AppDelegate.swift */,
 				44F0E73D1A48C02500F0816F /* GameViewController.swift */,
 				44B795FC1A634BB9001653C9 /* Extensions.swift */,
@@ -229,7 +232,7 @@
 			);
 			name = Jumping;
 			productName = Jumping;
-			productReference = 44F0E7321A48C02500F0816F /* Jumping.app */;
+			productReference = 44F0E7321A48C02500F0816F /* Jumpy Man.app */;
 			productType = "com.apple.product-type.application";
 		};
 		44F0E74A1A48C02600F0816F /* JumpingTests */ = {
@@ -321,6 +324,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44A411361B4F25EE00186FB9 /* BarrelTimeManager.swift in Sources */,
 				44F0E73C1A48C02500F0816F /* GameScene.swift in Sources */,
 				44F0E75C1A49DC0100F0816F /* Colors.swift in Sources */,
 				4411EFED1A5DABAF002BD399 /* Barrel.swift in Sources */,
@@ -454,7 +458,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Jumping/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Jumpy Man";
 			};
 			name = Debug;
 		};
@@ -464,7 +468,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Jumping/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Jumpy Man";
 			};
 			name = Release;
 		};
