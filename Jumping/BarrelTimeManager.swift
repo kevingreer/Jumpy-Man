@@ -19,14 +19,13 @@ class BarrelTimeManager: NSObject {
   var sendFast = false
   
   let Variance: NSTimeInterval = 0.25
-  let FastChance: UInt32 = 10 //Percent of fast
+  let FastChance: UInt32 = 5 //Percent of fast
   let InitialInterval: NSTimeInterval = 2.0
   
   
   func getNextTime() -> NSTimeInterval {
     
     let rand = arc4random() % 100
-    println(rand)
     if rand < FastChance {
       sendFast = true
       return InitialInterval
@@ -45,14 +44,12 @@ class BarrelTimeManager: NSObject {
         justSentMinimum = true
       }
     }
-    
-    //Use breather?
   
-    println(interval)
     return interval
   }
   
   func reset() {
     justSentMinimum = false
+    sendFast = false
   }
 }

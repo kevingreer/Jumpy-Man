@@ -45,4 +45,10 @@ class Barrel: SKSpriteNode {
     self.dx = dx
     self.physicsBody?.velocity.dx = -dx
   }
+  
+  func explode() {
+    println("Explode!")
+    self.physicsBody?.categoryBitMask = PhysicsCategory.None
+    self.removeFromParent()
+  }
 }

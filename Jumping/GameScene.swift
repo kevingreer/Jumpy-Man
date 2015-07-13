@@ -16,6 +16,7 @@ struct PhysicsCategory {
   static let Man   : UInt32 = 0x1 << 1
   static let Barrel: UInt32 = 0x1 << 2
   static let Ground: UInt32 = 0x1 << 3
+  static let Powerup: UInt32 = 0x1 << 4
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
@@ -75,6 +76,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
   var run_anim: SKAction!
   var gameIsOver = false
   
+  var startingX: CGFloat!
+  
   //MARK: Physics
   let GRAVITY: CGFloat = 30.0
   let BARREL_SPEED = 0.03
@@ -111,20 +114,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     ground = childNodeWithName("Ground") as! SKSpriteNode
     ground.texture = groundTexture
     ground.physicsBody?.categoryBitMask = PhysicsCategory.Ground
-//    ground.physicsBody?.collisionBitMask = PhysicsCategory.Ground
+    //    ground.physicsBody?.collisionBitMask = PhysicsCategory.Ground
     ground.physicsBody?.contactTestBitMask = PhysicsCategory.Man
     ground.physicsBody?.dynamic = false
+    ground.physicsBody?.restitution = 0
     let groundMovement = SKAction.moveByX(-666, y: 0, duration: 2.0)
     let groundReplacement = SKAction.moveByX(666, y: 0, duration: 0)
     ground.runAction(SKAction.repeatActionForever(SKAction.sequence([groundMovement, groundReplacement])))
     
     //Grass
-//    grass = childNodeWithName("Grass") as! SKSpriteNode
-//    grass.texture = grassTexture
-//    let grassMovement = SKAction.moveByX(-50, y: 0, duration: 0.3)
-//    let grassReplacement = SKAction.moveByX(50, y: 0, duration: 0)
-//    grass.runAction(SKAction.repeatActionForever(SKAction.sequence([grassMovement, grassReplacement])))
-//    grass.hidden = true
+    //    grass = childNodeWithName("Grass") as! SKSpriteNode
+    //    grass.texture = grassTexture
+    //    let grassMovement = SKAction.moveByX(-50, y: 0, duration: 0.3)
+    //    let grassReplacement = SKAction.moveByX(50, y: 0, duration: 0)
+    //    grass.runAction(SKAction.repeatActionForever(SKAction.sequence([grassMovement, grassReplacement])))
+    //    grass.hidden = true
     
     //Hero
     let spawnPoint = childNodeWithName("SpawnPoint")!
@@ -132,6 +136,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     hero.position = spawnPoint.position
     self.addChild(hero)
     spawnPoint.removeFromParent()
+    startingX = hero.position.x
     
     //Setup score label
     scoreLabel.fontName = "04b_19"
@@ -175,11 +180,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     //Score Box
     scoreBox = childNodeWithName("ScoreBox") as! SKSpriteNode
     scoreBox.texture = SKTexture(imageNamed: "ScoreBox")
-//    scoreBox.hidden = true
+    //    scoreBox.hidden = true
     
     retryButton = childNodeWithName("RetryButton") as! SKSpriteNode
     retryButton.texture = SKTexture(imageNamed: "RetryButton")
-//    retryButton.hidden = true
+    //    retryButton.hidden = true
     
     menuButton = childNodeWithName("MenuButton") as! SKSpriteNode
     menuButton.texture = SKTexture(imageNamed: "MenuButton")
@@ -191,9 +196,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     if (NSUserDefaults.standardUserDefaults().boolForKey("musicState")){
       playBackgroundMusic("Jumper.mp3")
     }
-//    if (NSUserDefaults.standardUserDefaults().boolForKey("sfxState")){
-//      playRunningSound("RunningGrass.wav")
-//    }
+    //    if (NSUserDefaults.standardUserDefaults().boolForKey("sfxState")){
+    //      playRunningSound("RunningGrass.wav")
+    //    }
     
     let point = childNodeWithName("BarrelSpawnPoint")!
     barrelSpawnPoint = point.position
@@ -219,7 +224,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
         started = true
         timer = NSTimer.scheduledTimerWithTimeInterval(BarrelTimeManager.sharedInstance.InitialInterval, target: self, selector: "fireTimer:", userInfo: nil, repeats: true)
       }
-      if heroCanJump() && !gamePaused{
+      
+      if (heroCanRegularJump() || heroCanDoubleJump()) && !gamePaused{
+        if heroCanRegularJump() {
+          if hero.physicsBody?.velocity.dy < 0 {
+            land()
+          }
+        }
         jump()
       }
     }
@@ -260,6 +271,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
         hero.applyForce()
       }
     }
+    
+    if hero.position.x != startingX {
+      hero.position.x = startingX
+    }
+    
+    hero.storedVelocity = hero.physicsBody?.velocity
   }
   
   // MARK: - Movement
@@ -268,7 +285,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
   func jump(){
     if (sfxState){
       self.runAction(jumpSound)
-//      audioPlayer.pause()
+      //      audioPlayer.pause()
     }
     hero.jump()
   }
@@ -276,9 +293,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
   ///Functions that must be done when the Character lands
   func land(){
     hero.land()
-//    if (!gameIsOver && NSUserDefaults.standardUserDefaults().boolForKey("sfxState")){
-//      audioPlayer.play()
-//    }
+    //    if (!gameIsOver && NSUserDefaults.standardUserDefaults().boolForKey("sfxState")){
+    //      audioPlayer.play()
+    //    }
     
   }
   
@@ -308,17 +325,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     return false
   }
   
-  func heroCanJump() -> Bool {
+  func heroCanDoubleJump() -> Bool {
+    return hero.doubleJump != nil && hero.numJump < 2
+  }
+  
+  func heroCanRegularJump() -> Bool {
     let dy = (hero.position.y - hero.size.height/2) - (ground.position.y + ground.size.height/2)
     return abs(dy) < JumpTolerance
   }
   
   // MARK: - NSTimer
   
+  var numSent = 0
   ///Spawns a Barrel and alters the time interval of the timer.
   func fireTimer(sender: NSTimer) {
+//    numSent++
+//    if numSent % 10 == 0{
+//      let s = Shield()
+//      s.spawnMovingNode(-666, timeInterval: 2.0, point: CGPointMake(self.size.width, self.frame.size.height * 0.7), scene: self)
+//    }
     spawnBarrel()
 
+    
     let newInterval = BarrelTimeManager.sharedInstance.getNextTime()
     timer.fireDate = timer.fireDate.dateByAddingTimeInterval(newInterval)
   }
@@ -332,15 +360,73 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     
     if ( (one.categoryBitMask == PhysicsCategory.Barrel || two.categoryBitMask == PhysicsCategory.Barrel) &&
       (one.categoryBitMask == PhysicsCategory.Man || two.categoryBitMask == PhysicsCategory.Man) ){
-        if !gameIsOver {gameOver()}
+        
+        var barrel: Barrel
+        if one.node is Barrel {
+          barrel = one.node as! Barrel
+        } else {
+          barrel = two.node as! Barrel
+        }
+        
+        hero.physicsBody?.velocity = hero.storedVelocity!
+        
+        if !gameIsOver {
+          hero.hit()
+          
+          
+          if hero.isDead {
+            gameOver()
+          } else {
+            score++
+            scoreLabel.text = "\(Int(score))"
+            barrel.explode()
+          }
+        }
+        
     }
     
     if ( (one.categoryBitMask == PhysicsCategory.Ground || two.categoryBitMask == PhysicsCategory.Ground) &&
       (one.categoryBitMask == PhysicsCategory.Man || two.categoryBitMask == PhysicsCategory.Man) ){
         if !gameIsOver {land()}
     }
+    
+    if ( one.categoryBitMask == PhysicsCategory.Powerup || two.categoryBitMask == PhysicsCategory.Powerup) {
+      let powerup: SKSpriteNode
+      if one.node is Powerup {
+        powerup = one.node as! SKSpriteNode
+      } else {
+        powerup = two.node as! SKSpriteNode
+      }
+      
+      hero.physicsBody?.velocity = hero.storedVelocity!
+      
+      powerup.physicsBody?.categoryBitMask = PhysicsCategory.None
+      powerup.removeFromParent()
+      
+      if let n = powerup.name {
+        if n == "DoubleJump" {
+          let dj = DoubleJump()
+          dj.applyToHero(hero)
+        } else if n == "Shield" {
+          let s = Shield()
+          s.applyToHero(hero)
+        }
+      }
+    }
   }
   
+  func didEndContact(contact: SKPhysicsContact) {
+    
+    var one: SKPhysicsBody = contact.bodyA
+    var two: SKPhysicsBody = contact.bodyB
+    
+    if ( (one.categoryBitMask == PhysicsCategory.Barrel || two.categoryBitMask == PhysicsCategory.Barrel) &&
+      (one.categoryBitMask == PhysicsCategory.Man || two.categoryBitMask == PhysicsCategory.Man) ){
+        if !gameIsOver && !hero.isDead {
+          hero.position.x = startingX
+        }
+    }
+  }
   // MARK: - Game Interuptions
   
   ///Functions to be run when the game is over
@@ -352,7 +438,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     
     if (!gameIsOver && NSUserDefaults.standardUserDefaults().boolForKey("sfxState")){
       self.runAction(SKAction.playSoundFileNamed("CartoonPunch.wav", waitForCompletion: false))
-//      audioPlayer.stop()
+      //      audioPlayer.stop()
     }
     
     BarrelTimeManager.sharedInstance.reset()
@@ -367,9 +453,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     gameOverText.position = CGPointMake(screenWidth/2, screenHeight * 0.75 + 50)
     gameOverText.hidden = false
     gameOverText.runAction(SKAction.fadeInWithDuration(0.5))
-//    scoreBox.hidden = false
-//    retryButton.hidden = false
-//    menuButton.hidden = false
+    //    scoreBox.hidden = false
+    //    retryButton.hidden = false
+    //    menuButton.hidden = false
     scoreBox.runAction(SKAction.moveTo(CGPointMake(screenWidth/2, screenHeight * 0.575), duration: 0.4))
     endScoreLabel.text = "SCORE  \(score)"
     
@@ -394,7 +480,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
       b.paused = true
       b.physicsBody?.dynamic = false
     }
-    hero.die()
     //man.physicsBody?.dynamic = false
     if started{
       timer.invalidate()
@@ -412,7 +497,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     hero.paused = false
     //man.physicsBody?.dynamic = true
     if started{
-//      timer = NSTimer.scheduledTimerWithTimeInterval(timeInterval, target: self, selector: "fireTimer:", userInfo: nil, repeats: true)
+      //      timer = NSTimer.scheduledTimerWithTimeInterval(timeInterval, target: self, selector: "fireTimer:", userInfo: nil, repeats: true)
     }
     
     pauseFade.hidden = true

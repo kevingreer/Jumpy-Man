@@ -16,6 +16,17 @@ class Hero: SKSpriteNode {
   
   var isJumping = false
   var isApplyingForce = false
+  var numJump = 0
+  
+  var prevPosition: CGPoint!
+  
+  var isDead = false
+  
+  var storedVelocity: CGVector?
+  
+  //Power-ups
+  var shield: Shield?
+  var doubleJump: DoubleJump?
   
   //Textures
   var idleTexture: SKTexture = SKTexture(imageNamed: "ManIdle")
@@ -24,6 +35,7 @@ class Hero: SKSpriteNode {
   var runTexture3: SKTexture = SKTexture(imageNamed: "ManRunning3")
   let jumpingTexture1: SKTexture = SKTexture(imageNamed: "ManJumping1")
   let jumpingTexture2: SKTexture = SKTexture(imageNamed: "ManJumping2")
+  var runTextures = Array<SKTexture>()
   
   var run_anim: SKAction!
   
@@ -35,7 +47,7 @@ class Hero: SKSpriteNode {
     self.texture = idleTexture
     self.physicsBody = SKPhysicsBody(texture: jumpingTexture1, alphaThreshold: 0.1, size: self.size)
     self.physicsBody?.categoryBitMask = PhysicsCategory.Man
-    self.physicsBody?.contactTestBitMask = PhysicsCategory.Barrel
+    self.physicsBody?.contactTestBitMask = PhysicsCategory.Barrel | PhysicsCategory.Powerup
     
     self.physicsBody?.allowsRotation = false
     self.physicsBody?.restitution = 0
@@ -43,9 +55,19 @@ class Hero: SKSpriteNode {
     self.physicsBody?.linearDamping = 0
     self.physicsBody?.angularDamping = 0
     
-    run_anim = SKAction.animateWithTextures([runTexture3, runTexture1, runTexture2], timePerFrame: 0.09)
-    run()
+    for i in  1...8{
+      let string = "HeroRunning\(i)"
+      let texture = SKTexture(imageNamed: string)
+      runTextures.append(texture)
+    }
+    
+    run_anim = SKAction.animateWithTextures(runTextures, timePerFrame: 0.05)
+    self.runAction(SKAction.repeatActionForever(run_anim))
+    
+    self.prevPosition = self.position
+    
     self.name = "Hero"
+
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -55,13 +77,24 @@ class Hero: SKSpriteNode {
   ///Causes the Man to jump a given amount
   ///@param impulse = the impulse to be applied to the Man
   func jump() {
+    numJump++
     isJumping = true
     self.removeAllActions()
+    
+    var currentTexture = self.texture
+    for i in 0...runTextures.count-1 {
+      if currentTexture == runTextures[i]{
+        self.texture = runTextures[(i+1) % runTextures.count]
+        break
+      }
+    }
+    
     self.physicsBody?.velocity = CGVectorMake(0, 0)
     self.physicsBody?.applyImpulse(CGVectorMake(0.0, InitialImpulse))
   }
   
   func land() {
+    numJump = 0
     isJumping = false
     run()
   }
@@ -72,7 +105,16 @@ class Hero: SKSpriteNode {
     self.runAction(SKAction.repeatActionForever(run_anim))
   }
   
-  ///Sets the Man's animation to the dead animation (not fully implemented)
+  func hit() {
+    println("HIT")
+    self.physicsBody?.velocity = CGVectorMake(0, self.physicsBody!.velocity.dy)
+    if shield != nil {
+      shield!.removeFromHero(self)
+    } else {
+      die()
+    }
+  }
+  
   func die (){
     self.removeAllActions()
     self.physicsBody?.velocity = CGVectorMake(0, 0)
@@ -80,6 +122,7 @@ class Hero: SKSpriteNode {
     self.physicsBody?.applyImpulse(CGVectorMake(0.0, InitialImpulse))
     self.physicsBody?.collisionBitMask = PhysicsCategory.None
     self.zPosition = 1
+    isDead = true
 //    self.runAction(SKAction.move)
 //    self.texture = runTexture2
 //    self.physicsBody = nil
@@ -91,11 +134,11 @@ class Hero: SKSpriteNode {
   }
   
   func manageJumpChange() {
-    if self.physicsBody?.velocity.dy > 0 {
-      self.texture = jumpingTexture1
-    } else {
-      self.texture = jumpingTexture2
-    }
+//    if self.physicsBody?.velocity.dy > 0 {
+//      self.texture = jumpingTexture1
+//    } else {
+//      self.texture = jumpingTexture2
+//    }
   }
 
 }
