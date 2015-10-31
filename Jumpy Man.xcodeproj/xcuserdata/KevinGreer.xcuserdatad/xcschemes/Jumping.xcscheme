@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0610"
+   LastUpgradeVersion = "0700"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "44F0E7311A48C02500F0816F"
-               BuildableName = "Jumping.app"
+               BuildableName = "Jumpy Man.app"
                BlueprintName = "Jumping"
                ReferencedContainer = "container:Jumpy Man.xcodeproj">
             </BuildableReference>
@@ -37,10 +37,10 @@
       </BuildActionEntries>
    </BuildAction>
    <TestAction
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      buildConfiguration = "Debug">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -57,26 +57,30 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "44F0E7311A48C02500F0816F"
-            BuildableName = "Jumping.app"
+            BuildableName = "Jumpy Man.app"
             BlueprintName = "Jumping"
             ReferencedContainer = "container:Jumpy Man.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </TestAction>
    <LaunchAction
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "44F0E7311A48C02500F0816F"
-            BuildableName = "Jumping.app"
+            BuildableName = "Jumpy Man.app"
             BlueprintName = "Jumping"
             ReferencedContainer = "container:Jumpy Man.xcodeproj">
          </BuildableReference>
@@ -85,16 +89,17 @@
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
+      buildConfiguration = "Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "44F0E7311A48C02500F0816F"
-            BuildableName = "Jumping.app"
+            BuildableName = "Jumpy Man.app"
             BlueprintName = "Jumping"
             ReferencedContainer = "container:Jumpy Man.xcodeproj">
          </BuildableReference>

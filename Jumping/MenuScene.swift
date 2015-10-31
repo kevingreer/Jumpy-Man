@@ -7,174 +7,191 @@
 //
 
 import SpriteKit
+import GameKit
 import AVFoundation
 
 class MenuScene: SKScene{
+  
+  var backgroundMusicPlayer: AVAudioPlayer!
+  var title: SKSpriteNode!
+  var playButton: SKSpriteNode!
+  var settingsButton: SKSpriteNode!
+  var leaderboardButton: SKSpriteNode!
+  var timer: NSTimer!
+  
+  let ButtonInitialScale: CGFloat = 0.6
+  let ButtonReducedScale: CGFloat = 0.57
+  
+  override func didMoveToView(view: SKView) {
+    self.physicsWorld.gravity = CGVectorMake(0.0, -2)
     
-    var backgroundMusicPlayer: AVAudioPlayer!
-    let title = SKSpriteNode(imageNamed: "Title")
-    let playButton = SKSpriteNode(imageNamed: "PlayButton")
-    let settingsButton = SKSpriteNode(imageNamed: "SettingsButton")
-    var timer: NSTimer!
+    //Set Bounds
     
-    override func didMoveToView(view: SKView) {
-        self.physicsWorld.gravity = CGVectorMake(0.0, -2)
-        
-        //Set Bounds
-        let screenWidth = self.frame.size.width
-        let screenHeight = self.frame.size.height
-        let GROUND_HEIGHT = screenHeight * 0.35
-        
-        //Stopper
-        let stopper = SKSpriteNode(color: UIColor.whiteColor(), size: CGSizeMake(screenWidth, 0.0001))
-        stopper.position = CGPointMake(screenWidth/2, screenHeight * 0.6)
-        stopper.physicsBody = SKPhysicsBody(rectangleOfSize: stopper.size)
-        stopper.physicsBody?.dynamic = false
-        self.addChild(stopper)
-        
-        //Title
-        title.setScale(0.75)
-        title.physicsBody?.restitution = 1.0
-        title.position = CGPointMake(screenWidth/2, screenHeight * 0.63)
-        title.physicsBody = SKPhysicsBody(rectangleOfSize: title.size)
-        self.addChild(title)
-        
-        //Play Button
-        playButton.position = CGPointMake(screenWidth/2, screenHeight * 0.45)
-        playButton.setScale(0.50)
-        playButton.zPosition = 1.0
-        self.addChild(playButton)
-        
-        //Settings Button
-        settingsButton.position = CGPointMake(screenWidth/2, screenHeight * 0.35)
-        settingsButton.setScale(0.50)
-        settingsButton.zPosition = 1.0
-        self.addChild(settingsButton)
-        
-        //Ground
-        let ground = SKSpriteNode(imageNamed: "Ground")
-        ground.position = CGPointMake(screenWidth/2, GROUND_HEIGHT/2)
-        ground.size = CGSizeMake(screenWidth, GROUND_HEIGHT)
-        ground.physicsBody = SKPhysicsBody(rectangleOfSize: ground.size)
-        ground.physicsBody?.dynamic = false
-        ground.physicsBody?.allowsRotation = false
-        ground.physicsBody?.categoryBitMask = PhysicsCategory.Ground
-        ground.physicsBody?.contactTestBitMask = PhysicsCategory.Man
-        ground.name = "Ground"
-        self.addChild(ground)
-        
-        //Grass
-        let grass = SKSpriteNode(imageNamed: "Grass")
-        grass.yScale = 1
-        grass.position = CGPointMake(screenWidth/2, GROUND_HEIGHT+grass.size.height/2)
-        grass.zPosition = 0.1
-        let grassMovement = SKAction.moveByX(-33, y: 0, duration: 0.5)
-        let grassReplacement = SKAction.moveByX(33, y: 0, duration: 0)
-        grass.runAction(SKAction.repeatActionForever(SKAction.sequence([grassMovement, grassReplacement])))
-        self.addChild(grass)
-        
-        //Background
-        let background = SKSpriteNode(imageNamed: "Background")
-        background.setScale(2)
-        background.position = CGPointMake(background.size.width/2, screenHeight - background.size.height/2)
-        let bgMovement = SKAction.moveByX(-1024, y: 0, duration: 100)
-        let bgReplacement = SKAction.moveByX(1024, y: 0, duration: 0)
-        background.runAction(SKAction.repeatActionForever(SKAction.sequence([bgMovement, bgReplacement])))
-        background.zPosition = -1000
-        self.addChild(background)
+    //Stopper
+    let stopperRect = CGRectMake(frame.origin.x, frame.origin.y + frame.size.height*0.6, frame.size.width, 1)
+    let stopper = SKNode()
+    stopper.physicsBody = SKPhysicsBody(edgeLoopFromRect: stopperRect)
+    self.addChild(stopper)
     
-        timer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: "fireTimer:", userInfo: nil, repeats: true)
-        
-        if (NSUserDefaults.standardUserDefaults().boolForKey("musicState")){
-            playBackgroundMusic("Jumper.mp3")
+    //Title
+    title = childNodeWithName("Title") as! SKSpriteNode
+    title.texture = SKTexture(imageNamed: "Title")
+    
+    //Play Button
+    playButton = childNodeWithName("PlayButton") as! SKSpriteNode
+    playButton.texture = SKTexture(imageNamed: "PlayButton")
+    
+    //Settings Button
+    settingsButton = childNodeWithName("SettingsButton") as! SKSpriteNode
+    settingsButton.texture = SKTexture(imageNamed: "SettingsButton")
+    
+    //Leaderboard Button
+    leaderboardButton = childNodeWithName("LeaderboardButton") as! SKSpriteNode
+    leaderboardButton.texture = SKTexture(imageNamed: "LeaderboardButton")
+    
+    //Ground
+    let ground = childNodeWithName("Ground") as! SKSpriteNode
+    ground.texture = SKTexture(imageNamed: "Ground")
+    ground.physicsBody = nil
+    let groundMovement = SKAction.moveByX(-740, y: 0, duration: 2.0)
+    let groundReplacement = SKAction.moveByX(740, y: 0, duration: 0)
+    ground.runAction(SKAction.repeatActionForever(SKAction.sequence([groundMovement, groundReplacement])))
+    
+    //Grass
+//    let grass = childNodeWithName("Grass") as! SKSpriteNode
+//    grass.texture = SKTexture(imageNamed: "Grass")
+//    let grassMovement = SKAction.moveByX(-33, y: 0, duration: 0.3)
+//    let grassReplacement = SKAction.moveByX(33, y: 0, duration: 0)
+//    grass.runAction(SKAction.repeatActionForever(SKAction.sequence([grassMovement, grassReplacement])))
+//    grass.hidden = true
+    
+    //Background
+    let bg = childNodeWithName("Background") as! SKSpriteNode
+    bg.texture = SKTexture(imageNamed: "Background")
+    let dx = bg.size.width/2
+    let bgMovement = SKAction.moveByX(-dx, y: 0, duration: 50)
+    let bgReplacement = SKAction.moveByX(dx, y: 0, duration: 0)
+    bg.runAction(SKAction.repeatActionForever(SKAction.sequence([bgMovement, bgReplacement])))
+  
+    
+    if (NSUserDefaults.standardUserDefaults().boolForKey("musicState")){
+      playBackgroundMusic("Jumper.mp3")
+    }
+    
+  }
+  
+  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    
+    for touch in touches {
+      let touchedNode = nodeAtPoint(touch.locationInNode(self))
+      
+      if touchedNode == playButton{
+        playButton.setScale(ButtonReducedScale)
+      } else if touchedNode == settingsButton{
+        settingsButton.setScale(ButtonReducedScale)
+      } else if touchedNode == leaderboardButton {
+        leaderboardButton.setScale(ButtonReducedScale)
+      }
+      
+    }
+    
+  }
+  
+  override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    
+    for touch in touches {
+      let touchedNode = nodeAtPoint(touch.locationInNode(self))
+      
+      if touchedNode != playButton{
+        playButton.setScale(ButtonInitialScale)
+      }
+      if touchedNode != settingsButton{
+        settingsButton.setScale(ButtonInitialScale)
+      }
+      if touchedNode != leaderboardButton {
+        leaderboardButton.setScale(ButtonInitialScale)
+      }
+      
+    }
+  }
+  
+  override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    for touch in touches {
+      let touchedNode = nodeAtPoint(touch.locationInNode(self))
+      playButton.setScale(ButtonInitialScale)
+      settingsButton.setScale(ButtonInitialScale)
+      leaderboardButton.setScale(ButtonInitialScale)
+      if touchedNode == playButton{
+        //Present the GameScene
+        presentGameScene()
+        if NSUserDefaults.standardUserDefaults().boolForKey("musicState"){
+          backgroundMusicPlayer.stop()
         }
+      }
+        
+      else if touchedNode == settingsButton{
+        //Present the SettingsScene
+        if NSUserDefaults.standardUserDefaults().boolForKey("musicState"){
+          backgroundMusicPlayer.pause()
+        }
+        presentSettingsScene()
+      }
+      
+      else if touchedNode == leaderboardButton {
+        showLeaderboard()
+      }
+      
+    }
+  }
+  
+  override func update(currentTime: CFTimeInterval) {}
+  
+  // MARK: - NSTimer
+  
+  func fireTimer(sender: NSTimer) {
+    title.physicsBody?.applyImpulse(CGVectorMake(0, 100))
+  }
+  
+  // MARK: - AVAudioPlayer
+  
+  func playBackgroundMusic(filename: String) {
+    let url = NSBundle.mainBundle().URLForResource(
+      filename, withExtension: nil)
+    if (url == nil) {
+      print("Could not find file: \(filename)")
+      return
+    }
+    
+    var error: NSError? = nil
+    do {
+      backgroundMusicPlayer = try AVAudioPlayer(contentsOfURL: url!)
+    } catch let error1 as NSError {
+      error = error1
+      backgroundMusicPlayer = nil
+    }
+    if backgroundMusicPlayer == nil {
+      print("Could not create audio player: \(error!)")
+      return
+    }
+    backgroundMusicPlayer.numberOfLoops = -1
+    backgroundMusicPlayer.prepareToPlay()
+    if (NSUserDefaults.standardUserDefaults().boolForKey("musicState")){
+      backgroundMusicPlayer.play()
+    }
+    backgroundMusicPlayer.volume = 0.5
+  }
+}
 
-    }
-    
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        
-        for touch in touches{
-            let touchedNode = nodeAtPoint(touch.locationInNode(self))
-            
-            if touchedNode == playButton{
-                playButton.setScale(0.47)
-            }
-            else if touchedNode == settingsButton{
-                settingsButton.setScale(0.47)
-            }
-
-        }
-        
-    }
-    
-    override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
-        
-        for touch in touches{
-            let touchedNode = nodeAtPoint(touch.locationInNode(self))
-            
-            if touchedNode != playButton{
-                playButton.setScale(0.5)
-            }
-            if touchedNode != settingsButton{
-                settingsButton.setScale(0.5)
-            }
-            
-        }
-    }
-    
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-        for touch in touches{
-            let touchedNode = nodeAtPoint(touch.locationInNode(self))
-            playButton.setScale(0.50)
-            settingsButton.setScale(0.50)
-            if touchedNode == playButton{
-                //Present the GameScene
-                presentGameScene()
-                if NSUserDefaults.standardUserDefaults().boolForKey("musicState"){
-                    backgroundMusicPlayer.stop()
-                }
-            }
-            
-            else if touchedNode == settingsButton{
-                //Present the SettingsScene
-                if NSUserDefaults.standardUserDefaults().boolForKey("musicState"){
-                    backgroundMusicPlayer.pause()
-                }
-                presentSettingsScene()
-            }
-            
-        }
-    }
-    
-    override func update(currentTime: CFTimeInterval) {}
-    
-    // MARK: - NSTimer
-    
-    func fireTimer(sender: NSTimer) {
-        title.physicsBody?.applyImpulse(CGVectorMake(0, 100))
-    }
-    
-    // MARK: - AVAudioPlayer
-    
-    func playBackgroundMusic(filename: String) {
-        let url = NSBundle.mainBundle().URLForResource(
-            filename, withExtension: nil)
-        if (url == nil) {
-            println("Could not find file: \(filename)")
-            return
-        }
-        
-        var error: NSError? = nil
-        backgroundMusicPlayer = AVAudioPlayer(contentsOfURL: url, error: &error)
-        if backgroundMusicPlayer == nil {
-            println("Could not create audio player: \(error!)")
-            return
-        }
-        backgroundMusicPlayer.numberOfLoops = -1
-        backgroundMusicPlayer.prepareToPlay()
-        if (NSUserDefaults.standardUserDefaults().boolForKey("musicState")){
-            backgroundMusicPlayer.play()
-        }
-        backgroundMusicPlayer.volume = 0.5
-    }
+extension MenuScene: GKGameCenterControllerDelegate {
+  func showLeaderboard() {
+    let gcViewController = GKGameCenterViewController()
+    gcViewController.gameCenterDelegate = self
+    gcViewController.viewState = .Leaderboards
+    gcViewController.leaderboardIdentifier = "hiscore"
+    UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(gcViewController, animated: true, completion: nil)
+  }
+  
+  func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController) {
+    gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
+  }
 }
