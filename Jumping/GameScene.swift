@@ -9,6 +9,7 @@
 import SpriteKit
 import UIKit
 import AVFoundation
+import GameKit
 
 struct PhysicsCategory {
   static let None  : UInt32 = 0x1
@@ -118,8 +119,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     ground.physicsBody?.contactTestBitMask = PhysicsCategory.Man
     ground.physicsBody?.dynamic = false
     ground.physicsBody?.restitution = 0
-    let groundMovement = SKAction.moveByX(-666, y: 0, duration: 2.0)
-    let groundReplacement = SKAction.moveByX(666, y: 0, duration: 0)
+    let groundMovement = SKAction.moveByX(-370, y: 0, duration: 1.0)
+    let groundReplacement = SKAction.moveByX(370, y: 0, duration: 0)
     ground.runAction(SKAction.repeatActionForever(SKAction.sequence([groundMovement, groundReplacement])))
     
     //Grass
@@ -206,11 +207,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     
   }
   
-  override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
     
     ihd = true
     
-    for touch: AnyObject in touches as! Set<UITouch>{
+    for touch: AnyObject in touches {
       
       let touchedNode = nodeAtPoint(touch.locationInNode(self))
       if touchedNode == retryButton{
@@ -236,11 +237,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     }
   }
   
-  override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+  override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
     
     ihd = false
     
-    for touch in touches as! Set<UITouch>{
+    for touch in touches {
       
       retryButton.setScale(ButtonInitialScale)
       menuButton.setScale(ButtonInitialScale)
@@ -315,10 +316,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
   
   ///="The Character has cleared the barrel this frame (he was not clear the previous frame)"
   func manClearedBarrel(b: Barrel) -> Bool{
-    var beginOfManX = hero.position.x - hero.size.width/2
+    let beginOfManX = hero.position.x - hero.size.width/2
     
-    var endOfBarrelX = b.position.x + b.size.width/2    //current
-    var prevEndOfBarrelX = b.prevPosition.x + b.size.width/2 //previous
+    let endOfBarrelX = b.position.x + b.size.width/2    //current
+    let prevEndOfBarrelX = b.prevPosition.x + b.size.width/2 //previous
     if endOfBarrelX < beginOfManX && !(prevEndOfBarrelX < beginOfManX){
       return true
     }
@@ -355,8 +356,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
   
   func didBeginContact(contact: SKPhysicsContact){
     
-    var one: SKPhysicsBody = contact.bodyA
-    var two: SKPhysicsBody = contact.bodyB
+    let one: SKPhysicsBody = contact.bodyA
+    let two: SKPhysicsBody = contact.bodyB
     
     if ( (one.categoryBitMask == PhysicsCategory.Barrel || two.categoryBitMask == PhysicsCategory.Barrel) &&
       (one.categoryBitMask == PhysicsCategory.Man || two.categoryBitMask == PhysicsCategory.Man) ){
@@ -417,8 +418,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
   
   func didEndContact(contact: SKPhysicsContact) {
     
-    var one: SKPhysicsBody = contact.bodyA
-    var two: SKPhysicsBody = contact.bodyB
+    let one: SKPhysicsBody = contact.bodyA
+    let two: SKPhysicsBody = contact.bodyB
     
     if ( (one.categoryBitMask == PhysicsCategory.Barrel || two.categoryBitMask == PhysicsCategory.Barrel) &&
       (one.categoryBitMask == PhysicsCategory.Man || two.categoryBitMask == PhysicsCategory.Man) ){
@@ -463,6 +464,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     if score > highScore{
       NSUserDefaults.standardUserDefaults().setInteger(score, forKey: "high score")
       highScoreLabel.text = "BEST  \(score)"
+      reportScore(score)
     } else {
       highScoreLabel.text = "BEST  \(highScore)"
     }
@@ -496,11 +498,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     }
     hero.paused = false
     //man.physicsBody?.dynamic = true
-    if started{
-      //      timer = NSTimer.scheduledTimerWithTimeInterval(timeInterval, target: self, selector: "fireTimer:", userInfo: nil, repeats: true)
+    if started && !gameIsOver {
+      timer = NSTimer.scheduledTimerWithTimeInterval(BarrelTimeManager.sharedInstance.InitialInterval, target: self, selector: "fireTimer:", userInfo: nil, repeats: true)
     }
-    
-    pauseFade.hidden = true
   }
   
   // MARK: - AVAudioPlayer
@@ -509,14 +509,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     let url = NSBundle.mainBundle().URLForResource(
       filename, withExtension: nil)
     if (url == nil) {
-      println("Could not find file: \(filename)")
+      print("Could not find file: \(filename)")
       return
     }
     
     var error: NSError? = nil
-    audioPlayer = AVAudioPlayer(contentsOfURL: url, error: &error)
+    do {
+      audioPlayer = try AVAudioPlayer(contentsOfURL: url!)
+    } catch let error1 as NSError {
+      error = error1
+      audioPlayer = nil
+    }
     if audioPlayer == nil {
-      println("Could not create audio player: \(error!)")
+      print("Could not create audio player: \(error!)")
       return
     }
     
@@ -529,14 +534,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     let url = NSBundle.mainBundle().URLForResource(
       filename, withExtension: nil)
     if (url == nil) {
-      println("Could not find file: \(filename)")
+      print("Could not find file: \(filename)")
       return
     }
     
     var error: NSError? = nil
-    backgroundMusicPlayer = AVAudioPlayer(contentsOfURL: url, error: &error)
+    do {
+      backgroundMusicPlayer = try AVAudioPlayer(contentsOfURL: url!)
+    } catch let error1 as NSError {
+      error = error1
+      backgroundMusicPlayer = nil
+    }
     if backgroundMusicPlayer == nil {
-      println("Could not create audio player: \(error!)")
+      print("Could not create audio player: \(error!)")
       return
     }
     
@@ -544,5 +554,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     backgroundMusicPlayer.prepareToPlay()
     backgroundMusicPlayer.play()
     backgroundMusicPlayer.volume = 0.5
+  }
+  
+  func reportScore(s: Int) {
+    let score = GKScore(leaderboardIdentifier: "hiscore")
+    score.value = Int64(s)
+    
+    GKScore.reportScores([score]) { error in
+      if error == nil {
+        print("Successfully reported score")
+      } else {
+        print(error)
+      }
+    }
   }
 }

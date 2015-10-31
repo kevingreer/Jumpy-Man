@@ -11,8 +11,8 @@ import SpriteKit
 ///A Character that can must be able to run and jump. Just change textures for different characters. Enum of texture groups?
 class Hero: SKSpriteNode {
   
-  let InitialImpulse: CGFloat = 450
-  let Force: CGFloat = 500
+  let InitialImpulse: CGFloat = 725
+  let Force: CGFloat = 625
   
   var isJumping = false
   var isApplyingForce = false
@@ -40,10 +40,9 @@ class Hero: SKSpriteNode {
   var run_anim: SKAction!
   
   ///Constructor: creates a Man and his physicsBody of appropriate size from a texture, color, and size
-  
   init() {
-    super.init(texture: idleTexture, color: nil, size: idleTexture.size())
-    self.setScale(0.75)
+    super.init(texture: idleTexture, color: UIColor.clearColor(), size: idleTexture.size())
+    self.size = CGSizeMake(140,169)
     self.texture = idleTexture
     self.physicsBody = SKPhysicsBody(texture: jumpingTexture1, alphaThreshold: 0.1, size: self.size)
     self.physicsBody?.categoryBitMask = PhysicsCategory.Man
@@ -81,7 +80,7 @@ class Hero: SKSpriteNode {
     isJumping = true
     self.removeAllActions()
     
-    var currentTexture = self.texture
+    let currentTexture = self.texture
     for i in 0...runTextures.count-1 {
       if currentTexture == runTextures[i]{
         self.texture = runTextures[(i+1) % runTextures.count]
@@ -93,6 +92,7 @@ class Hero: SKSpriteNode {
     self.physicsBody?.applyImpulse(CGVectorMake(0.0, InitialImpulse))
   }
   
+  /// Performs the appropriate actions for landing
   func land() {
     numJump = 0
     isJumping = false
@@ -105,8 +105,10 @@ class Hero: SKSpriteNode {
     self.runAction(SKAction.repeatActionForever(run_anim))
   }
   
+  /** Causes the `Hero` to stop and perform the dying animation
+  *   If the `Hero` has a shield, it will be removed and he won't die */
   func hit() {
-    println("HIT")
+    print("HIT")
     self.physicsBody?.velocity = CGVectorMake(0, self.physicsBody!.velocity.dy)
     if shield != nil {
       shield!.removeFromHero(self)
@@ -115,6 +117,7 @@ class Hero: SKSpriteNode {
     }
   }
   
+  /// Stops what the `Hero` is doing and causes him to perform the dying animation
   func die (){
     self.removeAllActions()
     self.physicsBody?.velocity = CGVectorMake(0, 0)
@@ -129,6 +132,7 @@ class Hero: SKSpriteNode {
 
   }
   
+  /// Apply the appropriate force to the `Hero`
   func applyForce(){
     self.physicsBody?.applyForce(CGVectorMake(0.0, Force))
   }

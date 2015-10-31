@@ -10,12 +10,17 @@
 		4411EFED1A5DABAF002BD399 /* Barrel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411EFEC1A5DABAF002BD399 /* Barrel.swift */; };
 		4411EFEF1A5EE4AD002BD399 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411EFEE1A5EE4AD002BD399 /* MenuScene.swift */; };
 		4411EFF11A5EE854002BD399 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4411EFF01A5EE854002BD399 /* MenuScene.sks */; };
+		441338C21BADF1C400184C22 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 441338C11BADF1C400184C22 /* iAd.framework */; };
+		44364C741BD7295000B83F82 /* ASAttributedLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44364C731BD7295000B83F82 /* ASAttributedLabelNode.swift */; settings = {ASSET_TAGS = (); }; };
 		44A411361B4F25EE00186FB9 /* BarrelTimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A411351B4F25EE00186FB9 /* BarrelTimeManager.swift */; };
 		44A411381B51B79100186FB9 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44A411371B51B79100186FB9 /* GameKit.framework */; };
 		44A4113A1B51BAEE00186FB9 /* GameCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A411391B51BAEE00186FB9 /* GameCenterManager.swift */; };
 		44A4113C1B52DD1C00186FB9 /* DoubleJump.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4113B1B52DD1C00186FB9 /* DoubleJump.swift */; };
 		44A4113E1B52DD2600186FB9 /* Shield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4113D1B52DD2600186FB9 /* Shield.swift */; };
 		44A411401B52DD2F00186FB9 /* Powerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4113F1B52DD2F00186FB9 /* Powerup.swift */; };
+		44A411421B53F9D200186FB9 /* StoreScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 44A411411B53F9D200186FB9 /* StoreScene.sks */; };
+		44A411441B53FF3B00186FB9 /* StoreScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A411431B53FF3B00186FB9 /* StoreScene.swift */; };
+		44A411451B54025000186FB9 /* JumpingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F0E7511A48C02600F0816F /* JumpingTests.swift */; };
 		44B795FD1A634BB9001653C9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B795FC1A634BB9001653C9 /* Extensions.swift */; };
 		44B795FF1A68277B001653C9 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B795FE1A68277B001653C9 /* Hero.swift */; };
 		44C3DA071A7D7CCE00523C4E /* 04B_19.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 44C3DA061A7D7A2000523C4E /* 04B_19.TTF */; };
@@ -26,7 +31,6 @@
 		44F0E7411A48C02500F0816F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44F0E73F1A48C02500F0816F /* Main.storyboard */; };
 		44F0E7431A48C02600F0816F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44F0E7421A48C02600F0816F /* Images.xcassets */; };
 		44F0E7461A48C02600F0816F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44F0E7441A48C02600F0816F /* LaunchScreen.xib */; };
-		44F0E7521A48C02600F0816F /* JumpingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F0E7511A48C02600F0816F /* JumpingTests.swift */; };
 		44F0E75C1A49DC0100F0816F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F0E75B1A49DC0100F0816F /* Colors.swift */; };
 		44F2F2C91A75530F00EF6699 /* JumpSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 44F2F2C61A75530F00EF6699 /* JumpSound.wav */; };
 		44F2F2CA1A75530F00EF6699 /* Running.wav in Resources */ = {isa = PBXBuildFile; fileRef = 44F2F2C71A75530F00EF6699 /* Running.wav */; };
@@ -52,12 +56,16 @@
 		4411EFEC1A5DABAF002BD399 /* Barrel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Barrel.swift; sourceTree = "<group>"; };
 		4411EFEE1A5EE4AD002BD399 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		4411EFF01A5EE854002BD399 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
+		441338C11BADF1C400184C22 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		44364C731BD7295000B83F82 /* ASAttributedLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASAttributedLabelNode.swift; sourceTree = "<group>"; };
 		44A411351B4F25EE00186FB9 /* BarrelTimeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarrelTimeManager.swift; sourceTree = "<group>"; };
 		44A411371B51B79100186FB9 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		44A411391B51BAEE00186FB9 /* GameCenterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenterManager.swift; sourceTree = "<group>"; };
 		44A4113B1B52DD1C00186FB9 /* DoubleJump.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleJump.swift; sourceTree = "<group>"; };
 		44A4113D1B52DD2600186FB9 /* Shield.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shield.swift; sourceTree = "<group>"; };
 		44A4113F1B52DD2F00186FB9 /* Powerup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Powerup.swift; sourceTree = "<group>"; };
+		44A411411B53F9D200186FB9 /* StoreScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StoreScene.sks; sourceTree = "<group>"; };
+		44A411431B53FF3B00186FB9 /* StoreScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreScene.swift; sourceTree = "<group>"; };
 		44B795FC1A634BB9001653C9 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		44B795FE1A68277B001653C9 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		44C3DA061A7D7A2000523C4E /* 04B_19.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = 04B_19.TTF; sourceTree = "<group>"; };
@@ -89,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				441338C21BADF1C400184C22 /* iAd.framework in Frameworks */,
 				44F2F2CE1A75545D00EF6699 /* AVFoundation.framework in Frameworks */,
 				44A411381B51B79100186FB9 /* GameKit.framework in Frameworks */,
 			);
@@ -136,6 +145,8 @@
 		44670D601A8592C6000542C4 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				44A411411B53F9D200186FB9 /* StoreScene.sks */,
+				44A411431B53FF3B00186FB9 /* StoreScene.swift */,
 				44F2F2D31A75A1F100EF6699 /* SettingsScene.swift */,
 				44F426051B4D9F24009495E5 /* SettingsScene.sks */,
 				4411EFF31A5EE909002BD399 /* MenuScene */,
@@ -155,6 +166,7 @@
 		44F0E7291A48C02500F0816F = {
 			isa = PBXGroup;
 			children = (
+				441338C11BADF1C400184C22 /* iAd.framework */,
 				44A411371B51B79100186FB9 /* GameKit.framework */,
 				44F2F2CD1A75545D00EF6699 /* AVFoundation.framework */,
 				44F0E7341A48C02500F0816F /* Jumping */,
@@ -178,6 +190,7 @@
 				44670D601A8592C6000542C4 /* Scenes */,
 				44B796031A6838A4001653C9 /* Characters */,
 				4411EFEC1A5DABAF002BD399 /* Barrel.swift */,
+				44364C731BD7295000B83F82 /* ASAttributedLabelNode.swift */,
 				44A4113B1B52DD1C00186FB9 /* DoubleJump.swift */,
 				44A4113D1B52DD2600186FB9 /* Shield.swift */,
 				44A4113F1B52DD2F00186FB9 /* Powerup.swift */,
@@ -275,7 +288,9 @@
 		44F0E72A1A48C02500F0816F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Kevin Greer";
 				TargetAttributes = {
 					44F0E7311A48C02500F0816F = {
@@ -326,6 +341,7 @@
 				44F2F2CA1A75530F00EF6699 /* Running.wav in Resources */,
 				44F2F2C91A75530F00EF6699 /* JumpSound.wav in Resources */,
 				4411EFF11A5EE854002BD399 /* MenuScene.sks in Resources */,
+				44A411421B53F9D200186FB9 /* StoreScene.sks in Resources */,
 				44F2F2CB1A75530F00EF6699 /* RunningGrass.wav in Resources */,
 				44F2F2D21A75649900EF6699 /* CartoonPunch.wav in Resources */,
 				44F0E7411A48C02500F0816F /* Main.storyboard in Resources */,
@@ -354,6 +370,8 @@
 				44F0E75C1A49DC0100F0816F /* Colors.swift in Sources */,
 				4411EFED1A5DABAF002BD399 /* Barrel.swift in Sources */,
 				44F2F2D41A75A1F100EF6699 /* SettingsScene.swift in Sources */,
+				44364C741BD7295000B83F82 /* ASAttributedLabelNode.swift in Sources */,
+				44A411441B53FF3B00186FB9 /* StoreScene.swift in Sources */,
 				4411EFEF1A5EE4AD002BD399 /* MenuScene.swift in Sources */,
 				44F0E73E1A48C02500F0816F /* GameViewController.swift in Sources */,
 				44F0E7381A48C02500F0816F /* AppDelegate.swift in Sources */,
@@ -367,7 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44F0E7521A48C02600F0816F /* JumpingTests.swift in Sources */,
+				44A411451B54025000186FB9 /* JumpingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +439,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -486,6 +505,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Jumping/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KevinGreer.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "Jumpy Man";
 				PROVISIONING_PROFILE = "";
 			};
@@ -499,6 +519,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Jumping/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KevinGreer.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "Jumpy Man";
 				PROVISIONING_PROFILE = "";
 			};
@@ -518,6 +539,7 @@
 				);
 				INFOPLIST_FILE = JumpingTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KevinGreer.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Jumping.app/Jumping";
 			};
@@ -533,6 +555,7 @@
 				);
 				INFOPLIST_FILE = JumpingTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KevinGreer.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Jumping.app/Jumping";
 			};

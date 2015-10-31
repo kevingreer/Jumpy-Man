@@ -20,7 +20,7 @@ class Barrel: SKSpriteNode {
   let barrelTexture = SKTexture(imageNamed: "Barrel")
   
   init(spawnPoint: CGPoint) {
-    super.init(texture: barrelTexture, color: nil, size: barrelTexture.size())
+    super.init(texture: barrelTexture, color: UIColor.clearColor(), size: barrelTexture.size())
     self.position = spawnPoint
     self.texture = barrelTexture
     self.size = CGSizeMake(Diameter, Diameter)
@@ -47,7 +47,7 @@ class Barrel: SKSpriteNode {
   }
   
   func explode() {
-    println("Explode!")
+    print("Explode!")
     self.physicsBody?.categoryBitMask = PhysicsCategory.None
     self.removeFromParent()
   }

@@ -26,7 +26,7 @@ class DoubleJump: NSObject, Powerup {
   
   func fireTimer(sender: NSTimer) {
     duration--
-    println(duration)
+    print(duration)
     if duration == 0 {
       self.removeFromHero(hero)
     }

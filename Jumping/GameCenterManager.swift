@@ -52,7 +52,7 @@ public class GameCenterManager: NSObject {
     
     if GKLocalPlayer.localPlayer().authenticated == false {
       GKLocalPlayer.localPlayer().authenticateHandler = {(viewController, error) -> Void in
-        println("success")
+        print("success")
       }
     }
   }

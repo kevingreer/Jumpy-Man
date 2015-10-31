@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import GameKit
 import AVFoundation
 
 class MenuScene: SKScene{
@@ -15,6 +16,7 @@ class MenuScene: SKScene{
   var title: SKSpriteNode!
   var playButton: SKSpriteNode!
   var settingsButton: SKSpriteNode!
+  var leaderboardButton: SKSpriteNode!
   var timer: NSTimer!
   
   let ButtonInitialScale: CGFloat = 0.6
@@ -24,9 +26,6 @@ class MenuScene: SKScene{
     self.physicsWorld.gravity = CGVectorMake(0.0, -2)
     
     //Set Bounds
-    let screenWidth = self.frame.size.width
-    let screenHeight = self.frame.size.height
-    let GROUND_HEIGHT = screenHeight * 0.35
     
     //Stopper
     let stopperRect = CGRectMake(frame.origin.x, frame.origin.y + frame.size.height*0.6, frame.size.width, 1)
@@ -45,6 +44,10 @@ class MenuScene: SKScene{
     //Settings Button
     settingsButton = childNodeWithName("SettingsButton") as! SKSpriteNode
     settingsButton.texture = SKTexture(imageNamed: "SettingsButton")
+    
+    //Leaderboard Button
+    leaderboardButton = childNodeWithName("LeaderboardButton") as! SKSpriteNode
+    leaderboardButton.texture = SKTexture(imageNamed: "LeaderboardButton")
     
     //Ground
     let ground = childNodeWithName("Ground") as! SKSpriteNode
@@ -77,25 +80,26 @@ class MenuScene: SKScene{
     
   }
   
-  override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
     
-    for touch in touches as! Set<UITouch>{
+    for touch in touches {
       let touchedNode = nodeAtPoint(touch.locationInNode(self))
       
       if touchedNode == playButton{
         playButton.setScale(ButtonReducedScale)
-      }
-      else if touchedNode == settingsButton{
+      } else if touchedNode == settingsButton{
         settingsButton.setScale(ButtonReducedScale)
+      } else if touchedNode == leaderboardButton {
+        leaderboardButton.setScale(ButtonReducedScale)
       }
       
     }
     
   }
   
-  override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+  override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
     
-    for touch in touches as! Set<UITouch>{
+    for touch in touches {
       let touchedNode = nodeAtPoint(touch.locationInNode(self))
       
       if touchedNode != playButton{
@@ -104,15 +108,19 @@ class MenuScene: SKScene{
       if touchedNode != settingsButton{
         settingsButton.setScale(ButtonInitialScale)
       }
+      if touchedNode != leaderboardButton {
+        leaderboardButton.setScale(ButtonInitialScale)
+      }
       
     }
   }
   
-  override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-    for touch in touches as! Set<UITouch>{
+  override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    for touch in touches {
       let touchedNode = nodeAtPoint(touch.locationInNode(self))
       playButton.setScale(ButtonInitialScale)
       settingsButton.setScale(ButtonInitialScale)
+      leaderboardButton.setScale(ButtonInitialScale)
       if touchedNode == playButton{
         //Present the GameScene
         presentGameScene()
@@ -127,6 +135,10 @@ class MenuScene: SKScene{
           backgroundMusicPlayer.pause()
         }
         presentSettingsScene()
+      }
+      
+      else if touchedNode == leaderboardButton {
+        showLeaderboard()
       }
       
     }
@@ -146,14 +158,19 @@ class MenuScene: SKScene{
     let url = NSBundle.mainBundle().URLForResource(
       filename, withExtension: nil)
     if (url == nil) {
-      println("Could not find file: \(filename)")
+      print("Could not find file: \(filename)")
       return
     }
     
     var error: NSError? = nil
-    backgroundMusicPlayer = AVAudioPlayer(contentsOfURL: url, error: &error)
+    do {
+      backgroundMusicPlayer = try AVAudioPlayer(contentsOfURL: url!)
+    } catch let error1 as NSError {
+      error = error1
+      backgroundMusicPlayer = nil
+    }
     if backgroundMusicPlayer == nil {
-      println("Could not create audio player: \(error!)")
+      print("Could not create audio player: \(error!)")
       return
     }
     backgroundMusicPlayer.numberOfLoops = -1
@@ -162,5 +179,19 @@ class MenuScene: SKScene{
       backgroundMusicPlayer.play()
     }
     backgroundMusicPlayer.volume = 0.5
+  }
+}
+
+extension MenuScene: GKGameCenterControllerDelegate {
+  func showLeaderboard() {
+    let gcViewController = GKGameCenterViewController()
+    gcViewController.gameCenterDelegate = self
+    gcViewController.viewState = .Leaderboards
+    gcViewController.leaderboardIdentifier = "hiscore"
+    UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(gcViewController, animated: true, completion: nil)
+  }
+  
+  func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController) {
+    gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
   }
 }

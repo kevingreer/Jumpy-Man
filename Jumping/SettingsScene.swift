@@ -81,10 +81,10 @@ class SettingsScene: SKScene {
     bg.runAction(SKAction.repeatActionForever(SKAction.sequence([bgMovement, bgReplacement])))
   }
   
-  override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
     /* Called when a touch begins */
     
-    for touch in touches as! Set<UITouch>{
+    for touch in touches {
       let touchedNode = nodeAtPoint(touch.locationInNode(self))
       if touchedNode == menuButton{
         menuButton.setScale(ButtonReducedScale)
@@ -102,8 +102,8 @@ class SettingsScene: SKScene {
     
   }
   
-  override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-    for touch in touches as! Set<UITouch>{
+  override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    for touch in touches {
       let touchedNode = nodeAtPoint(touch.locationInNode(self))
       menuButton.setScale(ButtonInitialScale)
       musicButton.setScale(ButtonInitialScale)
@@ -130,7 +130,7 @@ class SettingsScene: SKScene {
           sfxButton.texture = onTexture
         }
         else{
-          println("swag")
+          print("swag")
           sfxButton.texture = offTexture
         }
         NSUserDefaults.standardUserDefaults().setBool(!state, forKey: "sfxState")
