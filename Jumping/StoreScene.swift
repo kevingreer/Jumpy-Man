@@ -10,7 +10,6 @@ import SpriteKit
 
 class StoreScene: SKScene {
   
-  
   override func didMoveToView(view: SKView) {
     let bg = childNodeWithName("Background") as! SKSpriteNode
     bg.texture = SKTexture(imageNamed: "StoreScreen")

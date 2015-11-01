@@ -56,18 +56,5 @@ public class GameCenterManager: NSObject {
       }
     }
   }
-  
-//  #pragma mark User functions
-//  
-//  - (void)authenticateLocalUser {
-//  
-//  if (!gameCenterAvailable) return;
-//  
-//  NSLog(@"Authenticating local user...");
-//  if ([GKLocalPlayer localPlayer].authenticated == NO) {
-//  [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:nil];
-//  } else {
-//  NSLog(@"Already authenticated!");
-//  }
-//  }
+
 }

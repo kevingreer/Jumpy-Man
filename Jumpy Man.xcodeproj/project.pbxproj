@@ -11,7 +11,6 @@
 		4411EFEF1A5EE4AD002BD399 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411EFEE1A5EE4AD002BD399 /* MenuScene.swift */; };
 		4411EFF11A5EE854002BD399 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4411EFF01A5EE854002BD399 /* MenuScene.sks */; };
 		441338C21BADF1C400184C22 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 441338C11BADF1C400184C22 /* iAd.framework */; };
-		44364C741BD7295000B83F82 /* ASAttributedLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44364C731BD7295000B83F82 /* ASAttributedLabelNode.swift */; };
 		44A411361B4F25EE00186FB9 /* BarrelTimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A411351B4F25EE00186FB9 /* BarrelTimeManager.swift */; };
 		44A411381B51B79100186FB9 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44A411371B51B79100186FB9 /* GameKit.framework */; };
 		44A4113A1B51BAEE00186FB9 /* GameCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A411391B51BAEE00186FB9 /* GameCenterManager.swift */; };
@@ -57,7 +56,6 @@
 		4411EFEE1A5EE4AD002BD399 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		4411EFF01A5EE854002BD399 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
 		441338C11BADF1C400184C22 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
-		44364C731BD7295000B83F82 /* ASAttributedLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASAttributedLabelNode.swift; sourceTree = "<group>"; };
 		44A411351B4F25EE00186FB9 /* BarrelTimeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarrelTimeManager.swift; sourceTree = "<group>"; };
 		44A411371B51B79100186FB9 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		44A411391B51BAEE00186FB9 /* GameCenterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenterManager.swift; sourceTree = "<group>"; };
@@ -190,7 +188,6 @@
 				44670D601A8592C6000542C4 /* Scenes */,
 				44B796031A6838A4001653C9 /* Characters */,
 				4411EFEC1A5DABAF002BD399 /* Barrel.swift */,
-				44364C731BD7295000B83F82 /* ASAttributedLabelNode.swift */,
 				44A4113B1B52DD1C00186FB9 /* DoubleJump.swift */,
 				44A4113D1B52DD2600186FB9 /* Shield.swift */,
 				44A4113F1B52DD2F00186FB9 /* Powerup.swift */,
@@ -370,7 +367,6 @@
 				44F0E75C1A49DC0100F0816F /* Colors.swift in Sources */,
 				4411EFED1A5DABAF002BD399 /* Barrel.swift in Sources */,
 				44F2F2D41A75A1F100EF6699 /* SettingsScene.swift in Sources */,
-				44364C741BD7295000B83F82 /* ASAttributedLabelNode.swift in Sources */,
 				44A411441B53FF3B00186FB9 /* StoreScene.swift in Sources */,
 				4411EFEF1A5EE4AD002BD399 /* MenuScene.swift in Sources */,
 				44F0E73E1A48C02500F0816F /* GameViewController.swift in Sources */,

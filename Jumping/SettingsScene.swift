@@ -11,6 +11,8 @@ import UIKit
 
 class SettingsScene: SKScene {
   
+  // MARK: - Properties
+  
   //Nodes
   var box: SKSpriteNode!
   var menuButton: SKSpriteNode!
@@ -28,6 +30,8 @@ class SettingsScene: SKScene {
   let ButtonReducedScale: CGFloat = 0.47
   let ResetButtonInitialScale: CGFloat = 0.6
   let ResetButtonReducedScale: CGFloat = 0.57
+  
+  // MARK: - SKScene
 
   override func didMoveToView(view: SKView) {
     

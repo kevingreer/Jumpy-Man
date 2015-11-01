@@ -12,12 +12,16 @@ import iAd
 
 class GameViewController: UIViewController {
   
+  // MARK: - Properties
+  
   var adView: ADBannerView!
   var bannerIsVisible = false
   
+  // MARK: - UIViewController
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    if let scene = MenuScene.unarchiveMenuSceneFromFile("MenuScene") as? MenuScene {
+    if let scene = MenuScene.unarchiveScene(.Menu) as? MenuScene {
       //      if let scene = StoreScene.unarchiveStoreSceneFromFile("StoreScene") as? StoreScene {
       // Configure the view.
       let skView = self.view as! SKView
@@ -63,6 +67,8 @@ class GameViewController: UIViewController {
     return true
   }
 }
+
+// MARK: - ADBannerViewDelegate
 
 extension GameViewController: ADBannerViewDelegate {
   func bannerViewDidLoadAd(banner: ADBannerView!) {

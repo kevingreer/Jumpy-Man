@@ -15,12 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        // Allow the device's current music to continue playing
         do {
-            // Override point for customization after application launch.
-      
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
+          try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
         } catch _ {
         }
+      
         GameCenterManager.sharedInstance.authenticateLocalUser()
         
         return true

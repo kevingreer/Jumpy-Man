@@ -12,6 +12,7 @@ import AVFoundation
 
 class MenuScene: SKScene{
   
+  // MARK: - Properties
   var backgroundMusicPlayer: AVAudioPlayer!
   var title: SKSpriteNode!
   var playButton: SKSpriteNode!
@@ -21,6 +22,8 @@ class MenuScene: SKScene{
   
   let ButtonInitialScale: CGFloat = 0.6
   let ButtonReducedScale: CGFloat = 0.57
+  
+  // MARK: - SKScene
   
   override func didMoveToView(view: SKView) {
     self.physicsWorld.gravity = CGVectorMake(0.0, -2)
@@ -85,6 +88,7 @@ class MenuScene: SKScene{
     for touch in touches {
       let touchedNode = nodeAtPoint(touch.locationInNode(self))
       
+      // Reduce the size of the tapped button
       if touchedNode == playButton{
         playButton.setScale(ButtonReducedScale)
       } else if touchedNode == settingsButton{
@@ -102,6 +106,7 @@ class MenuScene: SKScene{
     for touch in touches {
       let touchedNode = nodeAtPoint(touch.locationInNode(self))
       
+      // Restore the size of any smaller buttons if the tap is no longer on it
       if touchedNode != playButton{
         playButton.setScale(ButtonInitialScale)
       }
@@ -181,6 +186,8 @@ class MenuScene: SKScene{
     backgroundMusicPlayer.volume = 0.5
   }
 }
+
+// MARK: - GameCenter
 
 extension MenuScene: GKGameCenterControllerDelegate {
   func showLeaderboard() {

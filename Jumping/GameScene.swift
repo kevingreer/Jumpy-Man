@@ -308,7 +308,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
       barrel.changeSpeed(Barrel.FastSpeed)
     }
     
-    
     self.addChild(barrel)
     
     barrels.append(barrel)
@@ -428,38 +427,44 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
         }
     }
   }
+  
   // MARK: - Game Interuptions
   
   ///Functions to be run when the game is over
   func gameOver(){
-    background.removeAllActions()
+    // Stop the background music
     if (NSUserDefaults.standardUserDefaults().boolForKey("musicState")){
       backgroundMusicPlayer.stop()
     }
     
+    // Play hit sound
     if (!gameIsOver && NSUserDefaults.standardUserDefaults().boolForKey("sfxState")){
       self.runAction(SKAction.playSoundFileNamed("CartoonPunch.wav", waitForCompletion: false))
       //      audioPlayer.stop()
     }
     
-    BarrelTimeManager.sharedInstance.reset()
-    
+    //Stop moving nodes
     pause()
+    background.removeAllActions()
     pauseNode.removeFromParent()
     scoreLabel.removeFromParent()
     ground.removeAllActions()
+    
+    // Flash white to show player has been hit
     gameOverFlash.position = centerPoint
     gameOverFlash.hidden = false
     gameOverFlash.runAction(SKAction.fadeAlphaTo(0.0, duration: 0.5))
+    
+    // Show game over box and buttons
     gameOverText.position = CGPointMake(screenWidth/2, screenHeight * 0.75 + 50)
     gameOverText.hidden = false
     gameOverText.runAction(SKAction.fadeInWithDuration(0.5))
-    //    scoreBox.hidden = false
-    //    retryButton.hidden = false
-    //    menuButton.hidden = false
     scoreBox.runAction(SKAction.moveTo(CGPointMake(screenWidth/2, screenHeight * 0.575), duration: 0.4))
-    endScoreLabel.text = "SCORE  \(score)"
+    retryButton.runAction(SKAction.moveTo(CGPointMake(screenWidth/2, screenHeight * 0.3 + 50), duration: 0.6))
+    menuButton.runAction(SKAction.moveTo(CGPointMake(screenWidth/2, screenHeight * 0.2), duration: 0.7))
     
+    // Update game over labels
+    endScoreLabel.text = "SCORE  \(score)"
     let highScore = NSUserDefaults.standardUserDefaults().integerForKey("high score")
     if score > highScore{
       NSUserDefaults.standardUserDefaults().setInteger(score, forKey: "high score")
@@ -468,9 +473,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     } else {
       highScoreLabel.text = "BEST  \(highScore)"
     }
-    retryButton.runAction(SKAction.moveTo(CGPointMake(screenWidth/2, screenHeight * 0.3 + 50), duration: 0.6))
-    menuButton.runAction(SKAction.moveTo(CGPointMake(screenWidth/2, screenHeight * 0.2), duration: 0.7))
+    
+    //Stop sending barrels
     timer.invalidate()
+    BarrelTimeManager.sharedInstance.reset()
+    
     gameIsOver = true
     
   }
@@ -556,6 +563,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     backgroundMusicPlayer.volume = 0.5
   }
   
+  /// Report score to the Game Center leaderboard
   func reportScore(s: Int) {
     let score = GKScore(leaderboardIdentifier: "hiscore")
     score.value = Int64(s)

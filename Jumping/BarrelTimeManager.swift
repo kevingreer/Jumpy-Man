@@ -8,6 +8,7 @@
 
 import SpriteKit
 
+/// A singleton class to manage the time interval between barrels
 class BarrelTimeManager: NSObject {
   
   static let sharedInstance = BarrelTimeManager()
